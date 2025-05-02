@@ -39,27 +39,28 @@
 <body class="index-page">
 
   <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+  
       <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">TBU</h1>
       </a>
-
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="index.html" class="active">Home<br></a></li>
+  
+      <nav id="navmenu" class="navmenu d-flex align-items-center">
+        <ul class="d-flex mb-0">
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="quizes.php">Quizes</a></li>
           <li><a href="#about">About Us</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
-      <a class="btn-getstarted" href="profile.php">Profile</a>
-
+  
+      <!-- Profile Link with spacing -->
+      <a href="profile.php" class="btn btn-outline-primary ms-3">Profile</a>
+  
     </div>
   </header>
+  
 
   <main class="main">
 
@@ -78,35 +79,32 @@
 
     </section><!-- /Hero Section -->
 
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
-            <h3>Why Choose Tirana Business University?</h3>
-            <p class="fst-italic">
-              TBU is committed to delivering high-quality education that bridges academic theory and business practice. Located in the heart of Tirana, we offer dynamic programs designed to meet market demands and global standards.
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> <span>Part of BALFIN Group, providing unique industry connections for students.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>International exchange opportunities through Erasmus+ and partner universities.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Career-focused education with over 86% of students employed during or right after their studies.</span></li>
-            </ul>
-            <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-          </div>
-
-        </div>
-
+<!-- About Us Section -->
+<section id="about" class="about section">
+  <div class="container" data-aos="fade-up">
+    <div class="row gy-4">
+      <div class="col-lg-6">
+        <img src="assets/img/about.jpg" class="img-fluid" alt="">
       </div>
+      <div class="col-lg-6 content">
+        <h3>About Tirana Business University</h3>
+        <p class="fst-italic">
+          Tirana Business University (TBU) is a modern, innovative higher education institution dedicated to preparing students for leadership in the fields of Business, Law, and Information Technology.
+        </p>
+        <ul>
+          <li><i class="bi bi-check-circle"></i> Founded by professionals from the BALFIN Group, one of the largest business groups in the region.</li>
+          <li><i class="bi bi-check-circle"></i> Focused on real-world learning through internships, company visits, and case studies.</li>
+          <li><i class="bi bi-check-circle"></i> Over 150 national and international partners and a 95% employment rate for graduates.</li>
+        </ul>
+        <p>
+          With a strong emphasis on innovation, entrepreneurship, and international collaboration, TBU empowers students to thrive in competitive global markets. Our programs are built on European standards and designed to meet the demands of the modern job market.
+        </p>
+        <a href="https://tbu.edu.al/en/about-us/" class="btn btn-primary mt-3">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section><!-- /About Us Section -->
 
-    </section><!-- /About Section -->
 
 
 
