@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
       echo "<script>
         alert('Welcome, $name! You have signed up successfully.');
-        window.location.href = 'index.html';
+        window.location.href = 'index.php';
       </script>";
       exit();
     }

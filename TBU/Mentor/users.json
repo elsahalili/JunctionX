@@ -12,5 +12,19 @@
         "email": "test@gmail.com",
         "password": "$2y$10$vdmpq\/gVI5k5GPzShsGtIOSmaLPEnScDesO11HDAjfalO\/PGdqcE.",
         "quiz_progress": []
+    },
+    {
+        "name": "test",
+        "surname": "test",
+        "email": "test1@gmail.com",
+        "password": "$2y$10$j9L3WLgBakS4zitWvoMOC.AT7B1324sjJQ58epPStCVjTyLP9WFoi",
+        "quiz_progress": []
+    },
+    {
+        "name": "test",
+        "surname": "test",
+        "email": "test3@gmail.com",
+        "password": "$2y$10$LiU.k36UhGpA2ZfkA691TO76fhwFui2C0Jlc6v5kX6lMzvTykFuE.",
+        "quiz_progress": []
     }
 ]
