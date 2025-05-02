@@ -50,30 +50,74 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <title>Login</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body {
-      background-color: #f9f9f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+  body {
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }
 
-    .container {
-      max-width: 400px;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+  .container {
+    max-width: 400px;
+    width: 100%;
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+  }
 
-    .form-control {
-      margin-bottom: 15px;
-    }
+  h2 {
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    color: #333;
+  }
 
-    .btn {
-      width: 100%;
-    }
-  </style>
+  .form-control {
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  .btn-primary {
+    background-color: #6c73ff;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+
+  .btn-primary:hover {
+    background-color: #5b62e0;
+  }
+
+  a {
+    display: block;
+    margin-top: 20px;
+    color: #6c73ff;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  .alert {
+    background-color: #ffe5e5;
+    color: #b10000;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+</style>
+
 </head>
 <body>
   <div class="container">
