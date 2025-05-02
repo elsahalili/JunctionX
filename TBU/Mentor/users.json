@@ -1,0 +1,16 @@
+[
+    {
+        "name": "test",
+        "surname": "halili",
+        "email": "eh@gmail.com",
+        "password": "$2y$10$4muMVNsQRc\/kIbjMN.Bn9.UXeMgL4try0uMoHosb5t\/datc5yRAnu",
+        "quiz_progress": []
+    },
+    {
+        "name": "test",
+        "surname": "test",
+        "email": "test@gmail.com",
+        "password": "$2y$10$vdmpq\/gVI5k5GPzShsGtIOSmaLPEnScDesO11HDAjfalO\/PGdqcE.",
+        "quiz_progress": []
+    }
+]
