@@ -60,7 +60,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="courses.html">Get Started</a>
+      <a class="btn-getstarted" href="register.php">Sign Up</a>
 
     </div>
   </header>
@@ -89,97 +89,59 @@
       </nav>
     </div><!-- End Page Title -->
 
-    <!-- Courses Section -->
-    <section id="courses" class="courses section">
+ <!-- Courses Section -->
+<section id="courses" class="courses section">
+  <div class="container">
+    <!-- Search Bar -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <input type="text" id="courseSearch" class="form-control" placeholder="Search courses by title...">
+      </div>
+    </div>
 
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="course-item">
-              <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
-                </div>
-
-                <h3><a href="course-details.html">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-1-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="course-item">
-              <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Marketing</p>
-                  <p class="price">$250</p>
-                </div>
-
-                <h3><a href="course-details.html">Search Engine Optimization</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-2-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Lana</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;35
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;42
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="course-item">
-              <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Content</p>
-                  <p class="price">$180</p>
-                </div>
-
-                <h3><a href="course-details.html">Copywriting</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-3-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Brandon</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;20
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;85
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
+    <div class="row">
+      <!-- Course Item 1 -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch course-card" data-aos="zoom-in" data-aos-delay="100">
+        <div class="course-item">
+          <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
+          <div class="course-content">
+            <h3><a href="course-details.html">Website Design</a></h3>
+            <p class="description">
+              Learn how to create modern, responsive websites from scratch using HTML, CSS, and JavaScript.
+            </p>
+          </div>
         </div>
-
       </div>
 
-    </section><!-- /Courses Section -->
+      <!-- Course Item 2 -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0 course-card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="course-item">
+          <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
+          <div class="course-content">
+            <h3><a href="course-details.html">Search Engine Optimization</a></h3>
+            <p class="description">
+              Master SEO techniques to improve your website's visibility on search engines like Google.
+            </p>
+          </div>
+        </div>
+      </div>
 
+      <!-- Course Item 3 -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0 course-card" data-aos="zoom-in" data-aos-delay="300">
+        <div class="course-item">
+          <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
+          <div class="course-content">
+            <h3><a href="course-details.html">Copywriting</a></h3>
+            <p class="description">
+              Discover the art of persuasive writing to drive traffic, sales, and engagement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
   </main>
 
   <footer id="footer" class="footer position-relative light-background">
@@ -253,6 +215,21 @@
 
   </footer>
 
+  <script>
+    document.getElementById("courseSearch").addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      const cards = document.querySelectorAll(".course-card");
+  
+      cards.forEach(card => {
+        const title = card.querySelector("h3 a").textContent.toLowerCase();
+        if (title.includes(query)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  </script>
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -269,6 +246,7 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+<!-- Filtering Script -->
 
 </body>
 
