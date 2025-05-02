@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             ];
             echo "<script>
               alert('Welcome back, {$user["name"]}!');
-              window.location.href = 'index.html';
+              window.location.href = 'home.php';
             </script>";
             exit();
           } else {
