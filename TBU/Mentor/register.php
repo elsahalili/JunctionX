@@ -1,21 +1,9 @@
 <?php
-// Database configuration
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "junctionx";
-
-// Create connection
-$conn = new mysqli($host, $user, $pass, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
 $error = "";
+$success = "";
 
-// Handle form submission
+$jsonFile = 'users.json';
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $name = trim($_POST["name"] ?? "");
   $surname = trim($_POST["surname"] ?? "");
@@ -23,41 +11,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $password = trim($_POST["password"] ?? "");
 
   if ($name && $surname && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($password)) {
-    // Check if email already exists
-    $checkStmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-    $checkStmt->bind_param("s", $email);
-    $checkStmt->execute();
-    $checkStmt->store_result();
+    $users = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
 
-    if ($checkStmt->num_rows > 0) {
-      $error = "Email already taken.";
-    } else {
-      // Proceed with registration
-      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-      $stmt = $conn->prepare("INSERT INTO users (name, surname, email, password) VALUES (?, ?, ?, ?)");
-      $stmt->bind_param("ssss", $name, $surname, $email, $hashedPassword);
-
-      if ($stmt->execute()) {
-        echo "<script>
-          alert('Thank you, $name! You have signed up successfully.');
-          window.location.href = 'login.php';
-        </script>";
-        exit();
-      } else {
-        $error = "Database error: " . $stmt->error;
+    foreach ($users as $user) {
+      if ($user['email'] === $email) {
+        $error = "Email already taken.";
+        break;
       }
-
-      $stmt->close();
     }
 
-    $checkStmt->close();
+    if (!$error) {
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+      $users[] = [
+        'name' => $name,
+        'surname' => $surname,
+        'email' => $email,
+        'password' => $hashedPassword,
+        'quiz_progress' => []
+      ];
+
+      file_put_contents($jsonFile, json_encode($users, JSON_PRETTY_PRINT));
+
+      echo "<script>
+        alert('Welcome, $name! You have signed up successfully.');
+        window.location.href = 'index.html';
+      </script>";
+      exit();
+    }
   } else {
     $error = "Please fill in all fields correctly.";
   }
 }
-
-$conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
