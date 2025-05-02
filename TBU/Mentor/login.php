@@ -14,45 +14,40 @@ if ($conn->connect_error) {
 }
 
 $error = "";
+$success = "";
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $name = trim($_POST["name"] ?? "");
-  $surname = trim($_POST["surname"] ?? "");
   $email = trim($_POST["email"] ?? "");
   $password = trim($_POST["password"] ?? "");
 
-  if ($name && $surname && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($password)) {
-    // Check if email already exists
-    $checkStmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-    $checkStmt->bind_param("s", $email);
-    $checkStmt->execute();
-    $checkStmt->store_result();
+  if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($password)) {
+    $stmt = $conn->prepare("SELECT name, password FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
 
-    if ($checkStmt->num_rows > 0) {
-      $error = "Email already taken.";
-    } else {
-      // Proceed with registration
-      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-      $stmt = $conn->prepare("INSERT INTO users (name, surname, email, password) VALUES (?, ?, ?, ?)");
-      $stmt->bind_param("ssss", $name, $surname, $email, $hashedPassword);
+    if ($stmt->num_rows > 0) {
+      $stmt->bind_result($name, $hashedPassword);
+      $stmt->fetch();
 
-      if ($stmt->execute()) {
+      if (password_verify($password, $hashedPassword)) {
+        // Successful login
         echo "<script>
-          alert('Thank you, $name! You have signed up successfully.');
-          window.location.href = 'login.php';
+          alert('Welcome back, $name!');
+          window.location.href = 'index.html';
         </script>";
         exit();
       } else {
-        $error = "Database error: " . $stmt->error;
+        $error = "Incorrect password.";
       }
-
-      $stmt->close();
+    } else {
+      $error = "No account found with that email.";
     }
 
-    $checkStmt->close();
+    $stmt->close();
   } else {
-    $error = "Please fill in all fields correctly.";
+    $error = "Please enter a valid email and password.";
   }
 }
 
@@ -63,7 +58,7 @@ $conn->close();
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Up</title>
+  <title>Login</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
   body {
@@ -142,23 +137,13 @@ $conn->close();
 </head>
 <body class="bg-light">
   <div class="container mt-5">
-    <h2 class="mb-4">Sign Up</h2>
+    <h2 class="mb-4">Login</h2>
 
     <?php if (!empty($error)): ?>
       <div class="alert alert-danger"><?php echo $error; ?></div>
     <?php endif; ?>
 
     <form method="POST" action="">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="surname" class="form-label">Surname</label>
-        <input type="text" name="surname" id="surname" class="form-control" placeholder="Surame" required>
-      </div>
-
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
@@ -169,8 +154,8 @@ $conn->close();
         <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
       </div>
 
-      <button type="submit" class="btn btn-primary">Sign Up</button> <br>
-      <a href="login.php">Log In</a>
+      <button type="submit" class="btn btn-primary">Log In</button> <br>
+      <a href="register.php">Sign Up</a>
     </form>
   </div>
 </body>
