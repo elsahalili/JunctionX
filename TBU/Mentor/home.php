@@ -58,27 +58,29 @@
         <h1 class="sitename">TBU</h1>
       </a>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="home.php" class="active">Home<br></a></li>
-          <li><a href="quizPage.php">Quiz</a></li>
-          <li><a href="result.php">Matched Universities</a></li>
+      <nav id="navmenu" class="navmenu w-100 d-flex justify-content-center">
+        <ul class="d-flex justify-content-center align-items-center gap-4 m-0">
+          <li><a href="home.php" class="<?= basename($_SERVER['PHP_SELF']) == 'home.php' ? 'active' : '' ?>">Home</a></li>
+          <?php if (isset($userData['cv_score']) && isset($userData['quiz_score'])): ?>
+            <li><a href="result.php" class="<?= basename($_SERVER['PHP_SELF']) == 'result.php' ? 'active' : '' ?>">Matched Universities</a></li>
+          <?php else: ?>
+            <li><a href="quizPage.php" class="<?= basename($_SERVER['PHP_SELF']) == 'quizPage.php' ? 'active' : '' ?>">Quiz</a></li>
+          <?php endif; ?>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
       <div class="dropdown custom-dropdown">
-  <a class="btn-getstarted dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="fa-solid fa-circle-user text-white me-2"></i>Profile
-  </a>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-    <li><a class="dropdown-item" href="profile.php">My Profile</a></li>
-    <li><a class="dropdown-item" href="settings.php">Settings</a></li>
-    <li><hr class="dropdown-divider" style="border-color: rgba(111, 110, 110, 0.3);"></li>
-    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-  </ul>
-</div>
-
+        <a class="btn-getstarted dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-circle-user text-white me-2"></i>Profile
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li><a class="dropdown-item" href="profile.php">My Profile</a></li>
+          <li><a class="dropdown-item" href="settings.php">Settings</a></li>
+          <li><hr class="dropdown-divider" style="border-color: rgba(111, 110, 110, 0.3);"></li>
+          <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+        </ul>
+      </div>
 
     </div>
   </header>

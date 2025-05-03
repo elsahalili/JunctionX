@@ -62,6 +62,13 @@ if (!file_exists($imagePath)) {
             align-items: center;
             justify-content: center;
             padding: 30px;
+            overflow-x: hidden;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
         }
 
         .card {

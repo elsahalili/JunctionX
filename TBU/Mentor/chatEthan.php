@@ -138,8 +138,8 @@
   <div class="chat-wrapper">
     <div class="chat-header">
     <button id="back-button" style="background: none; border: none; font-size: 15px; color: #333; cursor: pointer;">
-  <i class="fas fa-arrow-left"></i>
-</button>
+        <i class="fas fa-arrow-left"></i>
+    </button>
       <h2>Ethan</h2>
       <div class="status">Online</div>
     </div>
