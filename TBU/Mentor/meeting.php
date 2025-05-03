@@ -15,8 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $meeting_title = $_POST['meeting_title'];
     $meeting_date = $_POST['meeting_date'];
     $meeting_time = $_POST['meeting_time'];
-    
-    // Add new meeting to the meetings array
+
     $new_meeting = [
         'student_name' => $student_name,
         'university_name' => $university_name,
@@ -25,14 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'meeting_time' => $meeting_time,
         'status' => 'Scheduled',
     ];
-    
-    // Add new meeting to existing meetings
-    $meetings[] = $new_meeting;
-    
-    // Save updated meetings data back to the file
-    file_put_contents('meetings.json', json_encode($meetings, JSON_PRETTY_PRINT));
 
-    echo "Meeting scheduled successfully!";
+    $meetings[] = $new_meeting;
+
+    file_put_contents('meetings.json', json_encode($meetings, JSON_PRETTY_PRINT));
+    echo "<div class='alert alert-success text-center'>Meeting scheduled successfully!</div>";
 }
 ?>
 
@@ -45,144 +41,232 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- FullCalendar CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
-    
-    <!-- FontAwesome Icons -->
+
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <!-- Custom Styling -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --primary-color: #973D4D;
+        }
+
         body {
-            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #fbecee, #ffffff);
+            color: #343a40;
         }
+
         .navbar {
-            margin-bottom: 20px;
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
         .card {
-            border-radius: 10px;
-            margin-bottom: 30px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
+
         .card-header {
-            background-color: #0d6efd;
-            color: white;
+            background: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
+            border-radius: 15px 15px 0 0;
             text-align: center;
         }
+
         .form-control {
+            border-radius: 10px;
+        }
+
+        .btnn {
+            background-color: #823341;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            width: 100%;
             border-radius: 8px;
+            font-size: 15px;
+            color: white;
+            transition: all 0.4s ease-in-out;
         }
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
+
+        .btnn:hover {
+            background-color: #b54c5f;
+            color: white;
         }
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
+
         #calendar {
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
         }
+
+        .fc-toolbar-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .fc-button-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        a{
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+            padding: 12px;
+            border-radius: 8px;
+            transition:all 0.4s ease-in-out;
+        }
+        
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-teal-800 shadow-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Student-Meeting App</a>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container mt-5">
-
-        <h2 class="text-center display-4 mb-4"><i class="fa-solid fa-calendar-days"></i> Schedule a Meeting</h2>
-
-        <div class="row">
-
-            <!-- Schedule Form -->
-            <div class="col-lg-4">
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h4 class="mb-0">Schedule a New Meeting</h4>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="student_name" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" name="student_name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="university_name" class="form-label">University Name</label>
-                                <input type="text" class="form-control" name="university_name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="meeting_title" class="form-label">Meeting Title</label>
-                                <input type="text" class="form-control" name="meeting_title" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="meeting_date" class="form-label">Date</label>
-                                <input type="date" class="form-control" name="meeting_date" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="meeting_time" class="form-label">Time</label>
-                                <input type="time" class="form-control" name="meeting_time" required>
-                            </div>
-                            <button type="submit" class="btn btn-success w-100">Create</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Calendar Display -->
-            <div class="col-lg-8">
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h4 class="mb-0">Your Meeting Calendar</h4>
-                    </div>
-                    <div class="card-body">
-                        <div id="calendar"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-calendar-check"></i> Student-Meeting App</a>
     </div>
+</nav>
 
-    <!-- Scripts -->
-    <!-- FullCalendar JS -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<!-- Main Content -->
+<div class="container mt-5">
+    <h2 class="text-center mb-5"><i class="fa-solid fa-calendar-days"></i> Schedule a Meeting</h2>
 
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    <div class="row justify-content-center">
+        <!-- Schedule Form -->
+        <div class="col-md-5 mb-4">
+            <div class="card">
+                <div class="card-header">Schedule a New Meeting</div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-control" name="student_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">University Name</label>
+                            <input type="text" class="form-control" name="university_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Meeting Title</label>
+                            <input type="text" class="form-control" name="meeting_title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" name="meeting_date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Time</label>
+                            <input type="time" class="form-control" name="meeting_time" required>
+                        </div>
+                        <button type="submit" class="btn btnn">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            
-            // Convert PHP meetings data to JavaScript-friendly format
-            var meetingsData = <?php echo json_encode($meetings); ?>;
-            var events = meetingsData.map(function(meeting) {
-                return {
-                    title: meeting.meeting_title,
-                    start: meeting.meeting_date + 'T' + meeting.meeting_time,
-                    description: meeting.university_name + ' - ' + meeting.student_name
-                };
-            });
+        <!-- Calendar -->
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-header">Your Meeting Calendar</div>
+                <div class="card-body">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                events: events, // Pass events to the calendar
-                eventClick: function(info) {
-                    alert("Meeting: " + info.event.title + "\nDate: " + info.event.start.toLocaleString());
-                }
-            });
-            calendar.render();
+<!-- Modal -->
+<div class="modal fade" id="meetingModal" tabindex="-1" aria-labelledby="meetingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="meetingModalLabel">Meeting Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Title:</strong> <span id="modalTitle"></span></p>
+        <p><strong>Date:</strong> <span id="modalDate"></span></p>
+        <p><strong>University & Student:</strong> <span id="modalDescription"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="deleteMeetingBtn" class="btn btn-danger">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var meetingsData = <?php echo json_encode($meetings); ?>;
+
+        var events = meetingsData.map(function (meeting) {
+            return {
+                title: meeting.meeting_title,
+                start: meeting.meeting_date + 'T' + meeting.meeting_time,
+                description: meeting.university_name + ' - ' + meeting.student_name
+            };
         });
-    </script>
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: events,
+            eventClick: function (info) {
+                document.getElementById('modalTitle').innerText = info.event.title;
+                document.getElementById('modalDate').innerText = info.event.start.toLocaleString();
+                document.getElementById('modalDescription').innerText = info.event.extendedProps.description;
+
+                const eventKey = info.event.start.toISOString() + '_' + info.event.title;
+
+                document.getElementById('deleteMeetingBtn').onclick = function () {
+                    fetch('delete_meeting.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ key: eventKey })
+                    })
+                    .then(res => res.text())
+                    .then(response => {
+                        if (response === 'success') {
+                            info.event.remove();
+                            bootstrap.Modal.getInstance(document.getElementById('meetingModal')).hide();
+                        }
+                    });
+                };
+
+                new bootstrap.Modal(document.getElementById('meetingModal')).show();
+            }
+        });
+
+        calendar.render();
+    });
+</script>
+
 </body>
 </html>
