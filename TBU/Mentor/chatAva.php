@@ -183,44 +183,56 @@
     </div>
 
     <script>
-        document.getElementById("send-btn").addEventListener("click", sendMessage);
-        document.getElementById("message-input").addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                sendMessage();
-            }
-        });
+document.getElementById("send-btn").addEventListener("click", sendMessage);
+document.getElementById("message-input").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
 
-        function sendMessage() {
-            const messageInput = document.getElementById("message-input");
-            const messageText = messageInput.value.trim();
-            if (messageText === "") return;
+let responseQueue = [
+    "Ethan: Hello and Welcome, How can i help you",
+    "Ethan: How are you, bro?",
+    "Ethan: Wanna go watch a movie in the cinema?",
+    "Ethan: Perfect, tomorrow at 6PM works!"
+];
+let responseIndex = 0;
 
-            const messageElement = document.createElement("div");
-            messageElement.classList.add("message", "sent");
-            messageElement.textContent = messageText;
-            document.getElementById("chat-body").appendChild(messageElement);
-            messageInput.value = "";
-            scrollToBottom();
-        }
+function sendMessage() {
+    const messageInput = document.getElementById("message-input");
+    const messageText = messageInput.value.trim();
 
-        function receiveMessage(text) {
-            const messageElement = document.createElement("div");
-            messageElement.classList.add("message", "received");
-            messageElement.textContent = text;
-            document.getElementById("chat-body").appendChild(messageElement);
-            scrollToBottom();
-        }
+    if (messageText === "") return;
 
-        function scrollToBottom() {
-            const chatBody = document.getElementById("chat-body");
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message", "sent");
+    messageElement.textContent = messageText;
 
-        // Ava's automatic replies
-        setTimeout(() => receiveMessage("Ava: Hey bestie 😄"), 2000);
-        setTimeout(() => receiveMessage("Ava: You free today?"), 8000);
-        setTimeout(() => receiveMessage("Ava: Let’s go to the beach 🌊👙"), 15000);
-        setTimeout(() => receiveMessage("Ava: I'll bring snacks! 🍓🍕"), 25000);
-    </script>
+    const chatBody = document.getElementById("chat-body");
+    chatBody.appendChild(messageElement);
+
+    messageInput.value = "";
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Simulate reply ONLY after sending a message
+    if (responseIndex < responseQueue.length) {
+        setTimeout(() => {
+            receiveMessage(responseQueue[responseIndex]);
+            responseIndex++;
+        }, 1500); // Delay for realism
+    }
+}
+
+function receiveMessage(text) {
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message", "received");
+    messageElement.textContent = text;
+
+    const chatBody = document.getElementById("chat-body");
+    chatBody.appendChild(messageElement);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+</script>
+
 </body>
 </html>

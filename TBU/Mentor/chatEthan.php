@@ -5,182 +5,181 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Clone</title>
-    <link rel="stylesheet" >
+    <link rel="stylesheet" href="styles.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-
+        
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a2e);
-    color: #fff;
-    overflow: hidden;
-}
-
-.chat-container {
     display: flex;
     height: 100vh;
-    backdrop-filter: blur(4px);
+    background-color: #f1f1f1;
 }
 
-/* Sidebar */
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.contact-name {
+    font-size: 18px; /* Larger font size for the contact name */
+    font-weight: bold; /* Makes the name bold */
+    margin-left: 10px; /* Adds some space between the image and the name */
+    color: #333; /* Dark color for the text */
+}
+/* alice phoyo */
+
+/* Style for the contact item */
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.contact-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Style for the profile image */
+.contact-image {
+    width: 60px; /* Set the image width to 40px */
+    height: 55px; /* Set the image height to 40px to make it a square */
+    border-radius: 50%; /* Make the image round */
+    margin-right: 10px; /* Add some space between the image and the text */
+}
+
+/* Sidebar Styles */
+.chat-container {
+    display: flex;
+    width: 100%;
+}
+
 .sidebar {
     width: 250px;
-    background: linear-gradient(180deg, #1a1a2e, #16213e);
-    border-right: 2px solid #00f0ff;
-    box-shadow: 0 0 15px #00f0ff;
-    padding: 20px;
-    overflow-y: auto;
+    background-color: #075e54;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .profile {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .profile img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 2px solid #00f0ff;
     margin-right: 10px;
 }
 
 .username {
     font-weight: bold;
-    color: #00f0ff;
-    text-shadow: 0 0 5px #00f0ff;
+    font-size: 16px;
 }
 
 .contact-list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+    padding: 10px;
     cursor: pointer;
-    transition: transform 0.3s;
+    border-bottom: 1px solid #ddd;
 }
 
 .contact-item:hover {
-    transform: scale(1.05);
+    background-color: #128C7E;
 }
 
-.contact-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-    border: 2px solid #00f0ff;
-}
-
-/* Chat Window */
+/* Chat Window Styles */
 .chat-window {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: url('https://media.giphy.com/media/3o7aCSDsne6jV2A6lC/giphy.gif') center/cover no-repeat;
-    backdrop-filter: blur(5px);
-    position: relative;
-    z-index: 1;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .chat-header {
-    background-color: rgba(18, 140, 126, 0.9);
+    background-color: #128C7E;
+    color: white;
     padding: 15px;
-    display: flex;
-    align-items: center;
     font-size: 18px;
-    font-weight: bold;
-    border-bottom: 2px solid #00f0ff;
-    box-shadow: 0 0 10px #00f0ff;
+    text-align: center;
 }
 
 .chat-body {
     flex: 1;
-    padding: 20px;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    margin-top: 20px;
+    padding-bottom: 20px;
 }
 
-.message {
-    max-width: 70%;
-    padding: 10px 15px;
-    border-radius: 10px;
-    font-size: 14px;
-    word-wrap: break-word;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    animation: floatIn 0.5s ease;
-}
-
-@keyframes floatIn {
-    from {
-        transform: translateY(10px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.sent {
-    background-color: #00f0ff;
-    color: #000;
-    align-self: flex-end;
-    border: 1px solid #fff;
-}
-
-.received {
-    background-color: #1f4068;
-    color: #fff;
-    align-self: flex-start;
-    border: 1px solid #00f0ff;
-}
-
-/* Chat Input */
 .chat-input {
     display: flex;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.6);
-    border-top: 2px solid #00f0ff;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.chat-input input {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #00f0ff;
-    background: #0f0f0f;
-    color: #00f0ff;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-right: 10px;
+#message-input {
+    width: 85%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
     outline: none;
 }
 
-.chat-input button {
-    padding: 12px 20px;
-    background-color: #00f0ff;
-    color: black;
+#message-input:focus {
+    border-color: #128C7E;
+}
+
+#send-btn {
+    width: 10%;
+    padding: 10px;
+    background-color: #128C7E;
+    color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s ease;
 }
 
-.chat-input button:hover {
-    background-color: #0ff;
-    transform: scale(1.1);
+#send-btn:hover {
+    background-color: #075e54;
 }
 
+/* Message Styles */
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+}
+
+.message.sent {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+}
+
+.message.received {
+    background-color: #ffffff;
+    align-self: flex-start;
+}
     </style>
 </head>
 <body>
@@ -200,7 +199,7 @@ body {
             </ul>
             </ul>
             
-     </div>
+        </div>
 
         <!-- Chat Window -->
         <div class="chat-window">
@@ -220,6 +219,7 @@ body {
             </div>
         </div>
     </div>
+
     <script>
 document.getElementById("send-btn").addEventListener("click", sendMessage);
 document.getElementById("message-input").addEventListener("keydown", function(event) {
@@ -228,27 +228,39 @@ document.getElementById("message-input").addEventListener("keydown", function(ev
     }
 });
 
+let responseQueue = [
+    "Ethan: Hello and Welcome, How can i help you",
+    "Ethan: How are you, bro?",
+    "Ethan: Wanna go watch a movie in the cinema?",
+    "Ethan: Perfect, tomorrow at 6PM works!"
+];
+let responseIndex = 0;
+
 function sendMessage() {
     const messageInput = document.getElementById("message-input");
     const messageText = messageInput.value.trim();
 
-    if (messageText === "") return; // Don't send empty messages
+    if (messageText === "") return;
 
-    // Create the message element
     const messageElement = document.createElement("div");
     messageElement.classList.add("message", "sent");
     messageElement.textContent = messageText;
 
-    // Append the message to the chat body
     const chatBody = document.getElementById("chat-body");
     chatBody.appendChild(messageElement);
 
-    // Clear the input field
     messageInput.value = "";
-    chatBody.scrollTop = chatBody.scrollHeight; // Scroll to bottom
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Simulate reply ONLY after sending a message
+    if (responseIndex < responseQueue.length) {
+        setTimeout(() => {
+            receiveMessage(responseQueue[responseIndex]);
+            responseIndex++;
+        }, 1500); // Delay for realism
+    }
 }
 
-// You can also add received messages for the "Alice" chat as an example
 function receiveMessage(text) {
     const messageElement = document.createElement("div");
     messageElement.classList.add("message", "received");
@@ -256,23 +268,8 @@ function receiveMessage(text) {
 
     const chatBody = document.getElementById("chat-body");
     chatBody.appendChild(messageElement);
-    chatBody.scrollTop = chatBody.scrollHeight; // Scroll to bottom
+    chatBody.scrollTop = chatBody.scrollHeight;
 }
-
-// Example of receiving a message after 2 seconds
-setTimeout(() => {
-    receiveMessage("Ethan: Hi Bro");
-}, 2000);
-setTimeout(() => {
-    receiveMessage("Ethan: How are u bro!");
-}, 10000);
-setTimeout(() => {
-    receiveMessage("Ethan: Do you wanna come with me to watch a movie in cinema, let me know");
-}, 20000);
-setTimeout(() => {
-    receiveMessage("Ethan: perfect tommorow at 6pm");
-}, 32000);
-
 </script>
 
 
