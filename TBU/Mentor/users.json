@@ -1,87 +1,16 @@
 [
     {
-        "name": "test",
-        "surname": "halili",
-        "email": "eh@gmail.com",
-        "password": "$2y$10$4muMVNsQRc\/kIbjMN.Bn9.UXeMgL4try0uMoHosb5t\/datc5yRAnu",
-        "quiz_progress": []
+        "name": "testtt",
+        "surname": "tets",
+        "email": "test223@gmail.com",
+        "password": "$2y$10$kx5N4lCtNftrEJhARi0NIeKooBelQQBNkw1BjZh28zzh5d94O25o2",
+        "file": "users_data\/testtt_1746289405.json"
     },
     {
-        "name": "test",
-        "surname": "test",
-        "email": "test@gmail.com",
-        "password": "$2y$10$vdmpq\/gVI5k5GPzShsGtIOSmaLPEnScDesO11HDAjfalO\/PGdqcE.",
-        "quiz_progress": []
-    },
-    {
-        "name": "test",
-        "surname": "test",
-        "email": "test1@gmail.com",
-        "password": "$2y$10$j9L3WLgBakS4zitWvoMOC.AT7B1324sjJQ58epPStCVjTyLP9WFoi",
-        "quiz_progress": []
-    },
-    {
-        "name": "test",
-        "surname": "test",
-        "email": "test3@gmail.com",
-        "password": "$2y$10$LiU.k36UhGpA2ZfkA691TO76fhwFui2C0Jlc6v5kX6lMzvTykFuE.",
-        "quiz_progress": []
-    },
-    {
-        "name": "test",
-        "surname": "test",
-        "email": "test6@gmail.com",
-        "password": "$2y$10$6htk9Tn46g5sh4Ig8p1s..d2HrGAohUEfubjxHgXUNksR9kOlryHO",
-        "quiz_progress": []
-    },
-    {
-        "name": "bisha",
-        "surname": "bisha",
-        "email": "bisha@gmail.com",
-        "password": "$2y$10$c9dvdIYsOhWIvHMnxz0M1OFMVJ.ErS1wj4BqvDoz7TTlsvGjiYvEO",
-        "quiz_progress": []
-    },
-    {
-        "name": "test",
-        "surname": "test",
-        "email": "test222@gmail.com",
-        "password": "$2y$10$mZmlyDwqAAXZA22Y8IfnYu3fhFdX5erACS7Ma9VMYJ0KOu20u5LMq",
-        "file": "users_data\/test_1746241640.json"
-    },
-    {
-        "name": "elsatest",
-        "surname": "elsatest",
-        "email": "elstest@gmail.com",
-        "password": "$2y$10$lST754mzi8wIeTq8xvAkW.LOBCzLR.7CR0kGdqd4CA7HLUsvzxxoG",
-        "file": "users_data\/elsatest_1746242276.json"
-    },
-    {
-        "name": "test",
-        "surname": "test",
-        "email": "elsa@gmail.com",
-        "password": "$2y$10$knyGwQOcl8SFuMRre4Rt6ed6jwX7WH7A0HDlh1RGBbWtVTWS9D1qK",
-        "file": "users_data\/test_1746267105.json"
-    },
-    {
-        "name": "test",
-        "surname": "vera",
-        "email": "vera@gmail.com",
-        "password": "$2y$10$0Q43SjnxLaI2B\/CFm10bIuiuI0WPXIq1q1mEMHAluTzkOLH8D3AHK",
-        "file": "users_data\/test_1746275923.json"
-    },
-    {
-<<<<<<< Updated upstream
-        "name": "bleroni",
-        "surname": "bleroni",
-        "email": "bleroni@gmail.com",
-        "password": "$2y$10$TIVBvENdzQAS2rvUOa.D\/OdgwuRP14yyTr9Fd.YFdwvt63YbSRc6G",
-        "file": "users_data\/bleroni_1746287772.json"
-=======
-        "name": "meti",
-        "surname": "meti",
-        "email": "meti11@gmail.com",
-        "password": "$2y$10$rXwz76mtQ8cweZ9Thx7mHeyqFZroFt3IUo8dm2lHW.HKP\/4u2p4Hy",
-        "file": "users_data\/meti_1746285729.json"
->>>>>>> Stashed changes
+        "name": "toni",
+        "surname": "toni",
+        "email": "toni@gmail.com",
+        "password": "$2y$10$\/iAPa3XhTALc18jd3mTyPeN27SBKcBz1xXMHaYminhnQUg1NvVVry",
+        "file": "users_data\/toni_1746289739.json"
     }
 ]

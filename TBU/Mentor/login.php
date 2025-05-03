@@ -12,27 +12,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (file_exists($usersFile)) {
       $usersData = json_decode(file_get_contents($usersFile), true);
 
-      foreach ($usersData as $user) {
-        if ($user["email"] === $email) {
-          if (password_verify($password, $user["password"])) {
-            $_SESSION["user"] = [
-              "name" => $user["name"],
-              "email" => $user["email"],
-              "file" => "users/" . $user["email"] . ".json"  // Add file path for the user
-            ];
-            echo "<script>
-              window.location.href = 'home.php';
-            </script>";
-            exit();
-          } else {
-            $error = "Incorrect password.";
+      // Ensure $usersData is an array before proceeding
+      if ($usersData === null) {
+        $usersData = []; // Initialize as empty array if decoding fails
+        $error = "User data is corrupted or empty.";
+      } else {
+        foreach ($usersData as $user) {
+          if ($user["email"] === $email) {
+            if (password_verify($password, $user["password"])) {
+              $_SESSION["user"] = [
+                "name" => $user["name"],
+                "email" => $user["email"],
+                "file" => "users/" . $user["email"] . ".json"  // Add file path for the user
+              ];
+              echo "<script>
+                alert('Welcome back, {$user["name"]}!');
+                window.location.href = 'home.php';
+              </script>";
+              exit();
+            } else {
+              $error = "Incorrect password.";
+            }
+            break;
           }
-          break;
         }
-      }
 
-      if (empty($error)) {
-        $error = "No account found with that email.";
+        if (empty($error)) {
+          $error = "No account found with that email.";
+        }
       }
     } else {
       $error = "User data file not found.";
@@ -42,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
