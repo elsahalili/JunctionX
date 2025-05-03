@@ -1,238 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Clone - Ava</title>
-    <style>
-        * {
-            box-sizing: border-box;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Chat UI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8fafd;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .chat-wrapper {
+      width: 100%;
+      max-width: 700px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      padding: 16px 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .chat-header h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .status::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #2ecc71;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .chat-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #f4f7f9;
+    }
+
+    .message {
+      max-width: 70%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .message.received {
+      background: #e8f0fe;
+      align-self: flex-start;
+    }
+
+    .message.sent {
+      background: #dcf8c6;
+      align-self: flex-end;
+    }
+
+    .chat-input {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      background: #ffffff;
+      border-top: 1px solid #eee;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 20px;
+      background: #f0f2f5;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .chat-input button,
+    .chat-input i {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #888;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .chat-input button.send {
+      background-color: #8b5cf6;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+    .chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* changed */
+    gap: 10px; /* add spacing between back button and title */
         }
 
-        body {
-            margin: 0;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(135deg, #d4fc79, #96e6a1);
-        }
-
-        .chat-container {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: #1e272e;
-            color: white;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .profile {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .profile img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            margin-bottom: 10px;
-        }
-
-        .username {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .contact-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .contact-item:hover {
-            transform: scale(1.1);
-        }
-
-        .contact-image {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .chat-window {
-            flex: 1;
-            background: url('https://i.imgur.com/YrKvwyG.jpeg');
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chat-header {
-            background-color: #00b894;
-            padding: 20px;
-            color: white;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .chat-body {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .chat-input {
-            display: flex;
-            padding: 15px;
-            background-color: #ecf0f1;
-            border-top: 2px solid #bdc3c7;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 10px;
-            border-radius: 10px;
-            border: 2px solid #7f8c8d;
-            font-size: 16px;
-        }
-
-        .chat-input button {
-            padding: 10px 20px;
-            margin-left: 10px;
-            border: none;
-            border-radius: 10px;
-            background-color: #00b894;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .chat-input button:hover {
-            background-color: #019874;
-        }
-
-        .message {
-            max-width: 70%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        .sent {
-            align-self: flex-end;
-            background-color: #55efc4;
-        }
-
-        .received {
-            align-self: flex-start;
-            background-color: #ffeaa7;
-        }
-    </style>
+  </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="sidebar">
-            <div class="profile">
-                <img src="blerton.jpg" alt="Profile Picture">
-                <span class="username">Blerton Hamzai</span>
-            </div>
-            <ul class="contact-list">
-                <li class="contact-item">
-                    <img src="https://www.yourtango.com/sites/default/files/image_blog/things-strong-secure-stable-women-do-different.png" alt="Ava" class="contact-image">
-                    <a href="ava.php" style="text-decoration: none; color: white;">Ava</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="chat-window">
-            <div class="chat-header">
-                <img src="https://www.yourtango.com/sites/default/files/image_blog/things-strong-secure-stable-women-do-different.png" height="50px" width="50px" style="border-radius: 50%;">
-                Ava
-            </div>
-
-            <div class="chat-body" id="chat-body">
-                <!-- Messages will appear here -->
-            </div>
-
-            <div class="chat-input">
-                <input type="text" id="message-input" placeholder="Type a message...">
-                <button id="send-btn">Send</button>
-            </div>
-        </div>
+  <div class="chat-wrapper">
+    <div class="chat-header">
+    <button id="back-button" style="background: none; border: none; font-size: 15px; color: #333; cursor: pointer;">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+      <h2>Alice</h2>
+      <div class="status">Online</div>
     </div>
 
-    <script>
-document.getElementById("send-btn").addEventListener("click", sendMessage);
-document.getElementById("message-input").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-});
+    <div class="chat-body" id="chat-body"></div>
 
-let responseQueue = [
-    "Ethan: Hello and Welcome, How can i help you",
-    "Ethan: How are you, bro?",
-    "Ethan: Wanna go watch a movie in the cinema?",
-    "Ethan: Perfect, tomorrow at 6PM works!"
-];
-let responseIndex = 0;
+    <div class="chat-input">
+      <i class="fas fa-paperclip"></i>
+      <i class="fas fa-microphone"></i>
+      <input type="text" id="message-input" placeholder="Type your message..." />
+      <button class="send" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
 
-function sendMessage() {
+  <script>
+  window.addEventListener("load", () => {
+    const sendBtn = document.getElementById("send-btn");
     const messageInput = document.getElementById("message-input");
-    const messageText = messageInput.value.trim();
-
-    if (messageText === "") return;
-
-    const messageElement = document.createElement("div");
-    messageElement.classList.add("message", "sent");
-    messageElement.textContent = messageText;
-
     const chatBody = document.getElementById("chat-body");
-    chatBody.appendChild(messageElement);
 
-    messageInput.value = "";
-    chatBody.scrollTop = chatBody.scrollHeight;
+    const replies = [
+      "Sure, I'm here to help!",
+      "Can you tell me more about what you're looking for?",
+      "Great! Let's get started.",
+      "Feel free to ask any question."
+    ];
+    let replyIndex = 0;
 
-    // Simulate reply ONLY after sending a message
-    if (responseIndex < responseQueue.length) {
-        setTimeout(() => {
-            receiveMessage(responseQueue[responseIndex]);
-            responseIndex++;
-        }, 1500); // Delay for realism
+    function addMessage(text, type = "sent") {
+      const message = document.createElement("div");
+      message.classList.add("message", type);
+      message.textContent = text;
+      chatBody.appendChild(message);
+      chatBody.scrollTop = chatBody.scrollHeight;
     }
-}
 
-function receiveMessage(text) {
-    const messageElement = document.createElement("div");
-    messageElement.classList.add("message", "received");
-    messageElement.textContent = text;
+    function typeMessage(text) {
+      const message = document.createElement("div");
+      message.classList.add("message", "received");
+      chatBody.appendChild(message);
 
-    const chatBody = document.getElementById("chat-body");
-    chatBody.appendChild(messageElement);
-    chatBody.scrollTop = chatBody.scrollHeight;
-}
+      let index = 0;
+      const typingInterval = setInterval(() => {
+        if (index < text.length) {
+          message.textContent += text.charAt(index);
+          index++;
+        } else {
+          clearInterval(typingInterval);
+        }
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 50);
+    }
+
+    function sendMessage() {
+      const text = messageInput.value.trim();
+      if (!text) return;
+
+      addMessage(text, "sent");
+      messageInput.value = "";
+
+      if (replyIndex < replies.length) {
+        setTimeout(() => {
+          addMessage(replies[replyIndex], "received");
+          replyIndex++;
+        }, 1200);
+      }
+    }
+
+    sendBtn.addEventListener("click", sendMessage);
+    messageInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    // Show welcome message with typing animation
+    setTimeout(() => {
+      typeMessage("Hello! I'm your AI assistant Alice. How can I help you today?");
+    }, 1500);
+  });
 </script>
+<script>
+  document.getElementById("back-button").addEventListener("click", () => {
+    window.location.href = "universityPage.php?name=Harvard";
+  });
+</script>
+
+
+
 
 </body>
 </html>

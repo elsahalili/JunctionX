@@ -140,7 +140,7 @@
     <button id="back-button" style="background: none; border: none; font-size: 15px; color: #333; cursor: pointer;">
         <i class="fas fa-arrow-left"></i>
     </button>
-      <h2>Noah</h2>
+      <h2>Alice</h2>
       <div class="status">Online</div>
     </div>
 
@@ -215,13 +215,13 @@
 
     // Show welcome message with typing animation
     setTimeout(() => {
-      typeMessage("Hello! I'm your AI assistant Noah. How can I help you today?");
+      typeMessage("Hello! I'm your AI assistant Alice. How can I help you today?");
     }, 1500);
   });
 </script>
 <script>
   document.getElementById("back-button").addEventListener("click", () => {
-    window.location.href = "universityPage.php?name=MIT";
+    window.location.href = "universityPage.php?name=LSE";
   });
 </script>
 
