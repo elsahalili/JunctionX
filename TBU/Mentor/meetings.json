@@ -1,0 +1,18 @@
+[
+    {
+        "student_name": "Elsa",
+        "university_name": "tirana",
+        "meeting_title": "hello gajs",
+        "meeting_date": "2025-05-22",
+        "meeting_time": "19:45",
+        "status": "Scheduled"
+    },
+    {
+        "student_name": "Elsa",
+        "university_name": "tirana",
+        "meeting_title": "hello gajs",
+        "meeting_date": "2025-05-22",
+        "meeting_time": "19:45",
+        "status": "Scheduled"
+    }
+]

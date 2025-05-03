@@ -50,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       file_put_contents($filename, json_encode($personalData, JSON_PRETTY_PRINT));
 
       echo "<script>
-        alert('Welcome, $name! You have signed up successfully.');
         window.location.href = 'home.php';
       </script>";
       exit();
@@ -103,7 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     border-radius: 5px;
     font-size: 15px;
     transition:all 0.4s ease-in-out;
-
   }
 
   .btn-primary:hover {

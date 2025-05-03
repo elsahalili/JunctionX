@@ -70,10 +70,18 @@
         "file": "users_data\/test_1746275923.json"
     },
     {
+<<<<<<< Updated upstream
         "name": "bleroni",
         "surname": "bleroni",
         "email": "bleroni@gmail.com",
         "password": "$2y$10$TIVBvENdzQAS2rvUOa.D\/OdgwuRP14yyTr9Fd.YFdwvt63YbSRc6G",
         "file": "users_data\/bleroni_1746287772.json"
+=======
+        "name": "meti",
+        "surname": "meti",
+        "email": "meti11@gmail.com",
+        "password": "$2y$10$rXwz76mtQ8cweZ9Thx7mHeyqFZroFt3IUo8dm2lHW.HKP\/4u2p4Hy",
+        "file": "users_data\/meti_1746285729.json"
+>>>>>>> Stashed changes
     }
 ]

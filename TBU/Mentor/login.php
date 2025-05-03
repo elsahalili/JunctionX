@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               "file" => "users/" . $user["email"] . ".json"  // Add file path for the user
             ];
             echo "<script>
-              alert('Welcome back, {$user["name"]}!');
               window.location.href = 'home.php';
             </script>";
             exit();
