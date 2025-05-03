@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Prototype Student",
+        "email": "student@example.com",
+        "matches": [
+            {
+                "name": "Tirana University",
+                "percent": 33
+            },
+            {
+                "name": "Tech Institute",
+                "percent": 67
+            },
+            {
+                "name": "Business Academy",
+                "percent": 33
+            }
+        ]
+    }
+]

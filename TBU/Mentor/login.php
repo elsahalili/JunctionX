@@ -17,7 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           if (password_verify($password, $user["password"])) {
             $_SESSION["user"] = [
               "name" => $user["name"],
-              "email" => $user["email"]
+              "email" => $user["email"],
+              "file" => "users/" . $user["email"] . ".json"  // Add file path for the user
             ];
             echo "<script>
               alert('Welcome back, {$user["name"]}!');
@@ -43,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,20 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   .container {
     max-width: 400px;
-    width: 100%;
     background-color: white;
-    padding: 40px 30px;
+    padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     text-align: center;
-  }
-
-  h2 {
-    font-weight: 700;
-    font-size: 20px;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    color: #333;
   }
 
   .form-control {
@@ -100,26 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     background-color: #b54c5f;
   }
 
-  a {
-    display: block;
-    margin-top: 20px;
-    padding: 12px;
-    color: black;
-    font-weight: bold;
-    font-size: 13px;
-    text-decoration: none;
-    font-weight: bold;
-    width: 100%;
-    border-radius: 8px;
-    font-size: 15px;
-    transition:all 0.3s ease-in-out;
-  }
-
-  a:hover{
-    background-color: rgb(110, 108, 108);
-    color: white;
-  }
-
   .alert {
     background-color: #ffe5e5;
     color: #b10000;
@@ -127,8 +100,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     border-radius: 5px;
     font-size: 14px;
   }
-</style>
 
+  a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+  }
+
+  a:hover {
+    color: #823341;
+  }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -136,12 +120,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php if ($error): ?>
       <div class="alert alert-danger"><?= $error ?></div>
     <?php endif; ?>
-
     <form method="POST">
       <input type="email" name="email" class="form-control" placeholder="Email" required>
       <input type="password" name="password" class="form-control" placeholder="Password" required>
       <button class="btn btn-primary">Log In</button>
-      <a href="register.php" class="d-block mt-3 text-center">Sign Up</a>
+      <a href="register.php">Sign Up</a>
     </form>
   </div>
 </body>

@@ -1,0 +1,23 @@
+John Doe
+Email: john.doe@example.com
+Phone: 123-456-7890
+
+Education:
+- Bachelor of Science in Computer Science, University XYZ, 2024
+
+Skills:
+- Programming languages: Python, Java, C++
+- Web development: HTML, CSS, JavaScript
+- Data analysis: Python (Pandas, NumPy)
+
+Work Experience:
+- Intern at TechCorp (Summer 2023): Worked on developing web applications using Python and JavaScript.
+
+Certifications:
+- Completed Python Programming from Coursera
+- Data Science with Python (Udemy)
+
+Interests:
+- Software Development
+- Machine Learning
+- Artificial Intelligence

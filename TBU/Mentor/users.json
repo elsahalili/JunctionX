@@ -26,5 +26,33 @@
         "email": "test3@gmail.com",
         "password": "$2y$10$LiU.k36UhGpA2ZfkA691TO76fhwFui2C0Jlc6v5kX6lMzvTykFuE.",
         "quiz_progress": []
+    },
+    {
+        "name": "test",
+        "surname": "test",
+        "email": "test6@gmail.com",
+        "password": "$2y$10$6htk9Tn46g5sh4Ig8p1s..d2HrGAohUEfubjxHgXUNksR9kOlryHO",
+        "quiz_progress": []
+    },
+    {
+        "name": "bisha",
+        "surname": "bisha",
+        "email": "bisha@gmail.com",
+        "password": "$2y$10$c9dvdIYsOhWIvHMnxz0M1OFMVJ.ErS1wj4BqvDoz7TTlsvGjiYvEO",
+        "quiz_progress": []
+    },
+    {
+        "name": "test",
+        "surname": "test",
+        "email": "test222@gmail.com",
+        "password": "$2y$10$mZmlyDwqAAXZA22Y8IfnYu3fhFdX5erACS7Ma9VMYJ0KOu20u5LMq",
+        "file": "users_data\/test_1746241640.json"
+    },
+    {
+        "name": "elsatest",
+        "surname": "elsatest",
+        "email": "elstest@gmail.com",
+        "password": "$2y$10$lST754mzi8wIeTq8xvAkW.LOBCzLR.7CR0kGdqd4CA7HLUsvzxxoG",
+        "file": "users_data\/elsatest_1746242276.json"
     }
 ]
