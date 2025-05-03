@@ -49,13 +49,13 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html">Home<br></a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="trainers.html">Trainers</a></li>
-          <li><a href="events.html" class="active">Events</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.php">Home<br></a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="courses.php">Courses</a></li>
+          <li><a href="trainers.php">Trainers</a></li>
+          <li><a href="events.php" class="active">Events</a></li>
+          <li><a href="pricing.php">Pricing</a></li>
+          <li><a href="contact.php">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

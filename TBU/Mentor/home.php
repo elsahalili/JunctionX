@@ -26,7 +26,7 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- =======================================================
   * Template Name: Mentor
   * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
@@ -34,6 +34,16 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <style>
+    .btnn{
+      background-color:#823341;
+      transition: all 0.3s ease-in-out;
+    }
+    .btnn:hover{
+      background-color:#b54c5f;
+    }
+  </style>
 </head>
 
 <body class="index-page">
@@ -49,65 +59,94 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">Home<br></a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="trainers.html">Trainers</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="home.php" class="active">Home<br></a></li>
+          <li><a href="quiz.php">Quiz</a></li>
+          <li><a href="aboutus.php">More AboutUs</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="quiz.php">Take a Quiz</a>
+      <div class="dropdown">
+  <a class="btn-getstarted dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fa-solid fa-circle-user text-white me-2"></i>Profile
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+    <li><a class="dropdown-item" href="profile.php">My Profile</a></li>
+    <li><a class="dropdown-item" href="settings.php">Settings</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+  </ul>
+</div>
+
 
     </div>
   </header>
   
 
   <main class="main">
+  <section class="vh-100 d-flex align-items-center bg-light mb-sm-5">
+  <div class="container">
+    <div class="row align-items-center text-center text-md-start">
+      
+      <!-- Image Column -->
+      <div class="col-lg-6 mb-4 mb-md-0">
+        <img src="assets/img/toga.png" alt="Toga" class="img-fluid">
+      </div>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-
-      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
-
-      <div class="container">
-        <h2 data-aos="fade-up" data-aos-delay="100">Empowering Minds,<br>Building Futures</h2>
-        <p data-aos="fade-up" data-aos-delay="200">Tirana Business University is where innovation meets education. Prepare for tomorrow with real-world knowledge and opportunities.</p>
-        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="courses.html" class="btn-get-started">Get Started</a>
+      <!-- Text Column -->
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-3" data-aos="fade-up" data-aos-delay="100">
+          Empowering Minds,<br>Building Futures
+        </h2>
+        <p class="mb-4" data-aos="fade-up" data-aos-delay="200">
+          Tirana Business University is where innovation meets education.
+          Prepare for tomorrow with real-world knowledge and opportunities.
+        </p>
+        <div data-aos="fade-up" data-aos-delay="300">
+          <a href="courses.html" class="btnn btn px-4 py-2 fw-semibold text-white">
+            Get Started
+          </a>
         </div>
       </div>
 
-    </section><!-- /Hero Section -->
-
-<!-- About Us Section -->
-<section id="about" class="about section">
-  <div class="container" data-aos="fade-up">
-    <div class="row gy-4">
-      <div class="col-lg-6">
-        <img src="assets/img/about.jpg" class="img-fluid" alt="">
-      </div>
-      <div class="col-lg-6 content">
-        <h3>About Tirana Business University</h3>
-        <p class="fst-italic">
-          Tirana Business University (TBU) is a modern, innovative higher education institution dedicated to preparing students for leadership in the fields of Business, Law, and Information Technology.
-        </p>
-        <ul>
-          <li><i class="bi bi-check-circle"></i> Founded by professionals from the BALFIN Group, one of the largest business groups in the region.</li>
-          <li><i class="bi bi-check-circle"></i> Focused on real-world learning through internships, company visits, and case studies.</li>
-          <li><i class="bi bi-check-circle"></i> Over 150 national and international partners and a 95% employment rate for graduates.</li>
-        </ul>
-        <p>
-          With a strong emphasis on innovation, entrepreneurship, and international collaboration, TBU empowers students to thrive in competitive global markets. Our programs are built on European standards and designed to meet the demands of the modern job market.
-        </p>
-        <a href="https://tbu.edu.al/en/about-us/" class="btn btn-primary mt-3">Learn More</a>
-      </div>
     </div>
   </div>
-</section><!-- /About Us Section -->
+</section>
+
+<!-- About Us Section -->
+<section id="about" class="about section py-5 vh-100 d-flex align-items-center mt-5 mt-lg-1">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Text Left -->
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-3" style="font-size: 1.8rem;">About Tirana Business University</h2>
+        <p class="mb-3 text-muted" style="font-size: 0.95rem;">
+          Tirana Business University (TBU) is a modern, innovative higher education institution dedicated to preparing students for leadership in the fields of Business, Law, and Information Technology.
+        </p>
+        <ul class="list-unstyled text-muted" style="font-size: 0.9rem;">
+          <li><i class="bi bi-check-circle-fill text-danger me-2"></i> Founded by professionals from the BALFIN Group.</li>
+          <li><i class="bi bi-check-circle-fill text-danger me-2"></i> Real-world learning via internships and case studies.</li>
+          <li><i class="bi bi-check-circle-fill text-danger me-2"></i> 150+ partners & 95% graduate employment rate.</li>
+        </ul>
+        <p class="mb-4 text-muted" style="font-size: 0.9rem;">
+          Our programs emphasize innovation, entrepreneurship, and global collaboration to meet modern job market demands.
+        </p>
+        <a href="#contact" class="btnn btn px-4 py-2 fw-semibold text-white">
+          Learn More
+        </a>
+      </div>
+
+      <!-- Image Right -->
+      <div class="col-lg-6 text-center">
+        <img src="assets/img/brain.png" class="img-fluid" style="max-width: 55%;" alt="University Image">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 
 
 
