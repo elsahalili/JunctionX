@@ -87,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     width: 100%;
     border-radius: 8px;
     font-size: 15px;
+    transition:all 0.4s ease-in-out;
   }
 
   .btn-primary:hover {
@@ -107,10 +108,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     text-decoration: none;
     font-weight: bold;
     color: black;
+    padding: 12px;
+    border-radius: 8px;
+    transition:all 0.4s ease-in-out;
   }
 
   a:hover {
-    color: #823341;
+    background-color:#F1F1F1;
   }
   </style>
 </head>

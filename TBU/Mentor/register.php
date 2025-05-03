@@ -102,6 +102,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     width: 100%;
     border-radius: 5px;
     font-size: 15px;
+    transition:all 0.4s ease-in-out;
+
   }
 
   .btn-primary:hover {
@@ -114,6 +116,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     padding: 10px;
     border-radius: 5px;
     font-size: 14px;
+  }
+
+  a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    padding: 12px;
+    border-radius: 8px;
+    transition:all 0.4s ease-in-out;
+  }
+
+  a:hover {
+    background-color:#F1F1F1;
   }
   </style>
 </head>
@@ -129,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <input type="email" name="email" class="form-control" placeholder="Email" required>
       <input type="password" name="password" class="form-control" placeholder="Password" required>
       <button type="submit" class="btn btn-primary">Sign Up</button>
-      <a href="login.php">Log In</a>
+      <a href="login.php" class="text-center">Log In</a>
     </form>
   </div>
 </body>
