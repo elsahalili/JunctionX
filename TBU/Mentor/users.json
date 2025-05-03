@@ -54,5 +54,19 @@
         "email": "elstest@gmail.com",
         "password": "$2y$10$lST754mzi8wIeTq8xvAkW.LOBCzLR.7CR0kGdqd4CA7HLUsvzxxoG",
         "file": "users_data\/elsatest_1746242276.json"
+    },
+    {
+        "name": "test",
+        "surname": "test",
+        "email": "elsa@gmail.com",
+        "password": "$2y$10$knyGwQOcl8SFuMRre4Rt6ed6jwX7WH7A0HDlh1RGBbWtVTWS9D1qK",
+        "file": "users_data\/test_1746267105.json"
+    },
+    {
+        "name": "test",
+        "surname": "vera",
+        "email": "vera@gmail.com",
+        "password": "$2y$10$0Q43SjnxLaI2B\/CFm10bIuiuI0WPXIq1q1mEMHAluTzkOLH8D3AHK",
+        "file": "users_data\/test_1746275923.json"
     }
 ]

@@ -62,7 +62,7 @@
         <ul>
           <li><a href="home.php" class="active">Home<br></a></li>
           <li><a href="quizPage.php">Quiz</a></li>
-          <li><a href="aboutus.php">More AboutUs</a></li>
+          <li><a href="result.php">Matched Universities</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

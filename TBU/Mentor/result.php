@@ -154,14 +154,6 @@ if (isset($userData['cv_score']) && isset($userData['quiz_score'])) {
   </header>
 
 
-
-
-
-
-
-
-
-
 <div class="container">
   <h2 class="mb-4 text-center">Matched Faculties and Universities</h2>
 
