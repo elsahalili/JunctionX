@@ -68,5 +68,12 @@
         "email": "vera@gmail.com",
         "password": "$2y$10$0Q43SjnxLaI2B\/CFm10bIuiuI0WPXIq1q1mEMHAluTzkOLH8D3AHK",
         "file": "users_data\/test_1746275923.json"
+    },
+    {
+        "name": "bleroni",
+        "surname": "bleroni",
+        "email": "bleroni@gmail.com",
+        "password": "$2y$10$TIVBvENdzQAS2rvUOa.D\/OdgwuRP14yyTr9Fd.YFdwvt63YbSRc6G",
+        "file": "users_data\/bleroni_1746287772.json"
     }
 ]
