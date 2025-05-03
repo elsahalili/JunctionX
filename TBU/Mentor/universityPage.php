@@ -1,42 +1,12 @@
 <?php
 $name = $_GET['name'] ?? 'Unknown University';
-$universityData = [
-    'MIT' => [
-        'description' => 'Massachusetts Institute of Technology is a world leader in technology and innovation.',
-        'location' => 'Cambridge, Massachusetts, USA',
-        'website' => 'https://www.mit.edu',
-        'image' => 'mit.jpg',
-        'chatBot' => 'chatNoah.php'
-    ],
-    'Oxford' => [
-        'description' => 'The University of Oxford is one of the oldest and most prestigious universities in the world.',
-        'location' => 'Oxford, England',
-        'website' => 'https://www.ox.ac.uk',
-        'image' => 'oxford.jpg',
-        'chatBot' => 'chatEma.php'
-    ],
-    'Tirana University' => [
-        'description' => 'A leading public university in Albania known for its wide range of programs.',
-        'location' => 'Tirana, Albania',
-        'website' => 'https://www.unitir.edu.al',
-        'image' => 'tirana_university.jpg',
-        'chatBot' => 'chatEthan.php'
-    ],
-    'Harvard' => [
-        'description' => 'Harvard University is a private Ivy League research university in Cambridge, Massachusetts.',
-        'location' => 'Cambridge, Massachusetts, USA',
-        'website' => 'https://www.harvard.edu',
-        'image' => 'harvard.jpg',
-        'chatBot' => 'chatAva.php'
-    ],
-    'LSE' => [
-        'description' => 'The London School of Economics is a public research university in London, England.',
-        'location' => 'London, UK',
-        'website' => 'https://www.lse.ac.uk',
-        'image' => 'lse.jpg',
-        'chatBot' => 'chatAlise.php'
-    ],
-];
+$jsonPath = 'assets/data/universities.json';
+
+$universityData = [];
+if (file_exists($jsonPath)) {
+    $jsonContent = file_get_contents($jsonPath);
+    $universityData = json_decode($jsonContent, true);
+}
 
 $data = $universityData[$name] ?? null;
 $imagePath = 'assets/img/universities/' . ($data['image'] ?? 'default_university.jpg');
