@@ -43,6 +43,7 @@
     .btnn:hover{
       background-color:#b54c5f;
     }
+
   </style>
 </head>
 
@@ -66,14 +67,14 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <div class="dropdown">
+      <div class="dropdown custom-dropdown">
   <a class="btn-getstarted dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
     <i class="fa-solid fa-circle-user text-white me-2"></i>Profile
   </a>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
     <li><a class="dropdown-item" href="profile.php">My Profile</a></li>
     <li><a class="dropdown-item" href="settings.php">Settings</a></li>
-    <li><hr class="dropdown-divider"></li>
+    <li><hr class="dropdown-divider" style="border-color: rgba(111, 110, 110, 0.3);"></li>
     <li><a class="dropdown-item" href="logout.php">Logout</a></li>
   </ul>
 </div>
