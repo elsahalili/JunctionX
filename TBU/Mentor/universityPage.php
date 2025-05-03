@@ -1,37 +1,40 @@
 <?php
-// universityPage.php
 $name = $_GET['name'] ?? 'Unknown University';
-
 $universityData = [
     'MIT' => [
         'description' => 'Massachusetts Institute of Technology is a world leader in technology and innovation.',
         'location' => 'Cambridge, Massachusetts, USA',
         'website' => 'https://www.mit.edu',
-        'image' => 'mit.jpg'
+        'image' => 'mit.jpg',
+        'chatBot' => 'chatNoah.php'
     ],
     'Oxford' => [
         'description' => 'The University of Oxford is one of the oldest and most prestigious universities in the world.',
         'location' => 'Oxford, England',
         'website' => 'https://www.ox.ac.uk',
-        'image' => 'oxford.jpg'
+        'image' => 'oxford.jpg',
+        'chatBot' => 'chatEma.php'
     ],
     'Tirana University' => [
         'description' => 'A leading public university in Albania known for its wide range of programs.',
         'location' => 'Tirana, Albania',
         'website' => 'https://www.unitir.edu.al',
-        'image' => 'tirana_university.jpg'
+        'image' => 'tirana_university.jpg',
+        'chatBot' => 'chatEthan.php'
     ],
     'Harvard' => [
         'description' => 'Harvard University is a private Ivy League research university in Cambridge, Massachusetts.',
         'location' => 'Cambridge, Massachusetts, USA',
         'website' => 'https://www.harvard.edu',
-        'image' => 'harvard.jpg'
+        'image' => 'harvard.jpg',
+        'chatBot' => 'chatAva.php'
     ],
     'LSE' => [
         'description' => 'The London School of Economics is a public research university in London, England.',
         'location' => 'London, UK',
         'website' => 'https://www.lse.ac.uk',
-        'image' => 'lse.jpg'
+        'image' => 'lse.jpg',
+        'chatBot' => 'chatAlise.php'
     ],
     // Add more unis as needed
 ];
@@ -86,6 +89,8 @@ if (!file_exists($imagePath)) {
                 <p><strong>Description:</strong> <?= htmlspecialchars($data['description']) ?></p>
                 <p><strong>Location:</strong> <?= htmlspecialchars($data['location']) ?></p>
                 <p><strong>Website:</strong> <a href="<?= htmlspecialchars($data['website']) ?>" target="_blank"><?= htmlspecialchars($data['website']) ?></a></p>
+                <p><strong>Website:</strong> <a href="<?= htmlspecialchars($data['website']) ?>" target="_blank"><?= htmlspecialchars($data['website']) ?></a></p>
+                <p><strong>ChatBot:</strong> <a href="<?= htmlspecialchars($data['chatBot']) ?>" ><?= htmlspecialchars($data['chatBot']) ?></a></p>
                 <a href="result.php" class="btn btn-secondary btn-back">← Back to Results</a>
             </div>
         </div>
