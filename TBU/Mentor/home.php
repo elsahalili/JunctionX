@@ -22,10 +22,13 @@ $hasCompletedQuiz = isset($userData['cv_score']) && isset($userData['quiz_score'
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>TBU Home</title>
 
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="assets/css/main.css" rel="stylesheet">
 </head>
 <body class="index-page">
@@ -38,12 +41,9 @@ $hasCompletedQuiz = isset($userData['cv_score']) && isset($userData['quiz_score'
 
     <nav id="navmenu" class="navmenu w-100 d-flex justify-content-center">
       <ul class="d-flex justify-content-center align-items-center gap-4 m-0">
-        <li><a href="home.php" class="<?= basename($_SERVER['PHP_SELF']) === 'home.php' ? 'active' : '' ?>">Home</a></li>
-        <?php if ($hasCompletedQuiz): ?>
-          <li><a href="result.php" class="<?= basename($_SERVER['PHP_SELF']) === 'result.php' ? 'active' : '' ?>">Matched Universities</a></li>
-        <?php else: ?>
-          <li><a href="quizPage.php" class="<?= basename($_SERVER['PHP_SELF']) === 'quizPage.php' ? 'active' : '' ?>">Quiz</a></li>
-        <?php endif; ?>
+        <li><a href="home.php" class="active">Home</a></li>
+          <li><a href="result.php">Matched Universities</a></li>
+          <li><a href="quizPage.php">Quiz</a></li>
       </ul>
     </nav>
 
@@ -73,9 +73,7 @@ $hasCompletedQuiz = isset($userData['cv_score']) && isset($userData['quiz_score'
           <p class="mb-4">
             Tirana Business University is where innovation meets education. Prepare for tomorrow with real-world knowledge and opportunities.
           </p>
-          <?php if ($hasCompletedQuiz): ?>
             <a href="quizPage.php" class="btnn btn px-4 py-2 fw-semibold text-white">Take a New Quiz</a>
-          <?php endif; ?>
         </div>
       </div>
     </div>

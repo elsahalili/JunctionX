@@ -1,14 +1,24 @@
 <?php
 session_start();
 
-$userEmail = $_SESSION['user']['email'] ?? 'guest@example.com';
+$userEmail = $_SESSION['user']['email'] ?? null;
+
+if (!$userEmail) {
+    die('No user data found. Please take the quiz.');
+}
+
 $userFile = "users_data/" . $userEmail . ".json";
 
 if (!file_exists($userFile)) {
-    die('No user data found.');
+    die('No user data found. Please take the quiz.');
 }
 
 $userData = json_decode(file_get_contents($userFile), true);
+
+if (!isset($userData['cv_score']) || !isset($userData['quiz_score'])) {
+    die('Incomplete data. Please take the quiz.');
+}
+
 $faculties = [
     'Computer Science' => ['Tirana University' => 90, 'MIT' => 100, 'Oxford' => 85],
     'Medicine' => ['Harvard' => 95, 'Tirana University' => 75],
@@ -16,33 +26,31 @@ $faculties = [
 ];
 
 $results = [];
-if (isset($userData['cv_score']) && isset($userData['quiz_score'])) {
-    foreach ($faculties as $faculty => $universities) {
-        $cv = $userData['cv_score'][$faculty] ?? 0;
-        $quiz = $userData['quiz_score'][$faculty] ?? 0;
-        $totalScore = min($cv + $quiz, 100);
 
-        if ($totalScore == 0) {
-            continue;
-        }
+foreach ($faculties as $faculty => $universities) {
+    $cv = $userData['cv_score'][$faculty] ?? 0;
+    $quiz = $userData['quiz_score'][$faculty] ?? 0;
+    $totalScore = min($cv + $quiz, 100);
 
-        $facultyResults = [];
-        foreach ($universities as $uni => $percent) {
-            if ($percent > 0) {
-                $facultyResults[$uni] = $percent;
-            }
-        }
+    if ($totalScore == 0) {
+        continue;
+    }
 
-        if (!empty($facultyResults)) {
-            $results[$faculty] = ['score' => $totalScore, 'universities' => $facultyResults];
+    $facultyResults = [];
+    foreach ($universities as $uni => $percent) {
+        if ($percent > 0) {
+            $facultyResults[$uni] = $percent;
         }
     }
 
-    uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
-} else {
-    die('Incomplete data.');
+    if (!empty($facultyResults)) {
+        $results[$faculty] = ['score' => $totalScore, 'universities' => $facultyResults];
+    }
 }
+
+uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -151,11 +159,8 @@ if (isset($userData['cv_score']) && isset($userData['quiz_score'])) {
     <nav id="navmenu" class="navmenu">
       <ul class="m-0">
       <li><a href="home.php">Home</a></li>
-      <?php if (isset($userData['cv_score']) && isset($userData['quiz_score'])): ?>
-        <li><a href="result.php" class="<?= basename($_SERVER['PHP_SELF']) == 'result.php' ? 'active' : '' ?>">Matched Universities</a></li>
-      <?php else: ?>
-        <li><a href="quizPage.php" class="<?= basename($_SERVER['PHP_SELF']) == 'quizPage.php' ? 'active' : '' ?>">Quiz</a></li>
-      <?php endif; ?>
+        <li><a href="result.php" class="active">Matched Universities</a></li>
+        <li><a href="quizPage.php" >Quiz</a></li>
     </nav>
     <div class="dropdown custom-dropdown">
       <a class="btn-getstarted dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -173,6 +178,9 @@ if (isset($userData['cv_score']) && isset($userData['quiz_score'])) {
 
 <div class="container">
   <h2 class="mb-4">Matched Faculties and Universities</h2>
+  <button>
+    <a href="meeting.php">MEETING</a>
+  </button>
 
   <?php foreach ($results as $faculty => $data): ?>
     <h3 class="faculty-heading mt-5"  style="color:#673C26;"><?= htmlspecialchars($faculty) ?> (<?= $data['score'] ?>%)</h3>
