@@ -1,6 +1,6 @@
 [
     {
-        "name": "testt",
+        "name": "testt2131",
         "surname": "tets",
         "email": "test223@gmail.com",
         "password": "$2y$10$kx5N4lCtNftrEJhARi0NIeKooBelQQBNkw1BjZh28zzh5d94O25o2",
@@ -54,5 +54,26 @@
         "email": "baba@gmail.com",
         "password": "$2y$10$hBfqsdgwgE8BxkMXQBfE3.sQRTNP7s1Zl7csJPRin\/jsmGT6gLWw6",
         "file": "users_data\/baba_1746348197.json"
+    },
+    {
+        "name": "shejma",
+        "surname": "shejmaa",
+        "email": "shejma@gmail.com",
+        "password": "$2y$10$\/VszD9V9yu\/rHHE0yzc9O.80Jd42EDjMH8M3KLizyfDQOXea5KPPK",
+        "file": "users_data\/shejma_1746350512.json"
+    },
+    {
+        "name": "test1",
+        "surname": "test1",
+        "email": "test1@gmail.com",
+        "password": "$2y$10$.nf5HNANzvoxPeLJVaEd4eefymmDFdoX1SeuHkHMVoBBfHj3\/M8\/C",
+        "file": "users_data\/test1_1746350951.json"
+    },
+    {
+        "name": "test2",
+        "surname": "test2",
+        "email": "test2@gmail.com",
+        "password": "$2y$10$a1HTuoY0S1R86bfkksiC7OqDE6kB8yq\/aH5jym7khSuhipqSEguFq",
+        "file": "users_data\/test2_1746351350.json"
     }
 ]

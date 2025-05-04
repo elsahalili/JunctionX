@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!$error) {
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
       $filename = $usersDataDir . '/' . strtolower($name) . '_' . time() . '.json';
-
+    
       $users[] = [
         'name' => $name,
         'surname' => $surname,
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'password' => $hashedPassword,
         'file' => $filename
       ];
-
+    
       $personalData = [
         'name' => $name,
         'surname' => $surname,
@@ -45,19 +45,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'quiz_results' => [],
         'matched_faculties' => []
       ];
-
+    
       file_put_contents($usersFile, json_encode($users, JSON_PRETTY_PRINT));
       file_put_contents($filename, json_encode($personalData, JSON_PRETTY_PRINT));
-
+    
       echo "<script>
+        alert('Welcome, " . htmlspecialchars($name) . " " . htmlspecialchars($surname) . "!');
         window.location.href = 'home.php';
       </script>";
       exit();
     }
+    
+    }
   } else {
     $error = "Please fill in all fields correctly.";
   }
-}
+
 ?>
 
 <!DOCTYPE html>
