@@ -111,7 +111,7 @@ if (!isset($_SESSION['admin'])) {
       </div>
 
       <div class="col">
-        <a href="admin/events.php" class="dashboard-card text-decoration-none">
+        <a href="manage_events.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-calendar-event"></i>
           <h5 class="mt-2">Manage Events</h5>
         </a>

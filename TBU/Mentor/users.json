@@ -26,5 +26,12 @@
         "email": "pranvera1@gmail.com",
         "password": "$2y$10$kkhF09VTq4\/WGVwQ.GtN.OeLnE.iaRdWmfn6oT3bASWfSiHXm9cEi",
         "file": "users_data\/pranvera1_1746313807.json"
+    },
+    {
+        "name": "elsa99",
+        "surname": "elsa99",
+        "email": "elsa99@gmail.com",
+        "password": "$2y$10$bJIGmJ\/uUtPPgKVQqjErreuoUJE5icmlckAS6xpXaHlJYdIsRjL\/2",
+        "file": "users_data\/elsa99_1746326431.json"
     }
 ]

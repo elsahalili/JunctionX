@@ -1,0 +1,14 @@
+[
+    {
+        "title": "AI Workshop",
+        "description": "Join us for a beginner-friendly workshop on AI and Machine Learning.",
+        "date": "2025-05-10",
+        "location": "Lab 3, Main Building"
+    },
+    {
+        "title": "End of Year Party",
+        "description": "Let’s celebrate the end of school with music, food, and games!",
+        "date": "2025-06-01",
+        "location": "School Gym"
+    }
+]
