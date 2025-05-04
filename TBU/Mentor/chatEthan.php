@@ -215,7 +215,7 @@
 
     // Show welcome message with typing animation
     setTimeout(() => {
-      typeMessage("Hello! I'm your AI assistant Ethan. How can I help you today?");
+      typeMessage("Hello! I'm Ethan a student at the university you matched with. How can I help you today?");
     }, 1500);
   });
 </script>

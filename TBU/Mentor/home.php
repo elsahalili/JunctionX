@@ -20,7 +20,7 @@ $hasCompletedQuiz = isset($userData['cv_score']) && isset($userData['quiz_score'
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>TBU Home</title>
+  <title>UniMatch</title>
 
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -36,7 +36,7 @@ $hasCompletedQuiz = isset($userData['cv_score']) && isset($userData['quiz_score'
 <header id="header" class="header d-flex align-items-center sticky-top">
   <div class="container-fluid container-xl position-relative d-flex align-items-center">
     <a href="index.php" class="logo d-flex align-items-center me-auto">
-      <h1 class="sitename">TBU</h1>
+      <h1 class="sitename">UniMatch</h1>
     </a>
 
     <nav id="navmenu" class="navmenu w-100 d-flex justify-content-center">

@@ -135,6 +135,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             transition:all 0.4s ease-in-out;
         }
         
+        .back-btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+
     </style>
 </head>
 <body>
@@ -143,8 +157,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="#"><i class="fas fa-calendar-check"></i> Student-Meeting App</a>
+        <div class="ms-auto">
+            <a href="result.php" class="btn btn-outline-light rounded-pill px-4 fw-bold shadow-sm back-btn">
+                <i class="fas fa-arrow-left me-2"></i>Back to Results
+            </a>
+        </div>
     </div>
 </nav>
+
 
 <!-- Main Content -->
 <div class="container mt-5">

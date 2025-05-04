@@ -16,5 +16,41 @@
                 "percent": 33
             }
         ]
+    },
+    {
+        "name": "Prototype Student",
+        "email": "student@example.com",
+        "matches": [
+            {
+                "name": "Tirana University",
+                "percent": 0
+            },
+            {
+                "name": "Tech Institute",
+                "percent": 0
+            },
+            {
+                "name": "Business Academy",
+                "percent": 0
+            }
+        ]
+    },
+    {
+        "name": "Prototype Student",
+        "email": "student@example.com",
+        "matches": [
+            {
+                "name": "Tirana University",
+                "percent": 0
+            },
+            {
+                "name": "Tech Institute",
+                "percent": 0
+            },
+            {
+                "name": "Business Academy",
+                "percent": 0
+            }
+        ]
     }
 ]
