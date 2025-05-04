@@ -12,5 +12,19 @@
         "email": "toni@gmail.com",
         "password": "$2y$10$\/iAPa3XhTALc18jd3mTyPeN27SBKcBz1xXMHaYminhnQUg1NvVVry",
         "file": "users_data\/toni_1746289739.json"
+    },
+    {
+        "name": "pranvera",
+        "surname": "pranvera",
+        "email": "pranvera@gmail.com",
+        "password": "$2y$10$jgO3vKcrVaDJaDHzF3D43uHMJtxPtphz.\/m6A7KuxCOORJsGeUlmK",
+        "file": "users_data\/pranvera_1746313777.json"
+    },
+    {
+        "name": "pranvera1",
+        "surname": "pranvera1",
+        "email": "pranvera1@gmail.com",
+        "password": "$2y$10$kkhF09VTq4\/WGVwQ.GtN.OeLnE.iaRdWmfn6oT3bASWfSiHXm9cEi",
+        "file": "users_data\/pranvera1_1746313807.json"
     }
 ]

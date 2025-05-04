@@ -54,5 +54,12 @@
         "website": "https:\/\/unite.edu.mk\/en\/",
         "image": "exampple.jpg",
         "chatBot": "chatNoah.php"
+    },
+    "3": {
+        "description": "aiohdaih",
+        "location": "tirana",
+        "website": "https:\/\/unitir.edu.al\/",
+        "image": "tirana.jpg",
+        "chatBot": "chatNoah.php"
     }
 }
