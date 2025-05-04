@@ -44,7 +44,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">TBU</h1>
+        <h1 class="sitename">UniMatch</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -70,7 +70,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+      <img src="assets/img/0x0.webp" alt="" data-aos="fade-in">
 
       <div class="container">
         <h2 data-aos="fade-up" data-aos-delay="100">Empowering Minds,<br>Building Futures</h2>
@@ -96,7 +96,7 @@
           <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
             <h3>Why Choose Tirana Business University?</h3>
             <p class="fst-italic">
-              TBU is committed to delivering high-quality education that bridges academic theory and business practice. Located in the heart of Tirana, we offer dynamic programs designed to meet market demands and global standards.
+              UniMatch is committed to delivering high-quality education that bridges academic theory and business practice. Located in the heart of Tirana, we offer dynamic programs designed to meet market demands and global standards.
             </p>
             <ul>
               <li><i class="bi bi-check-circle"></i> <span>Part of BALFIN Group, providing unique industry connections for students.</span></li>

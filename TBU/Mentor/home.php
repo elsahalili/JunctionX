@@ -86,7 +86,7 @@ $hasCompletedQuiz = isset($userData['cv_score']) && isset($userData['quiz_score'
         <div class="col-lg-6">
           <h2 class="fw-bold mb-3" style="font-size: 1.8rem;">About Tirana Business University</h2>
           <p class="mb-3 text-muted" style="font-size: 0.95rem;">
-            Tirana Business University (TBU) is a modern, innovative higher education institution dedicated to preparing students for leadership in the fields of Business, Law, and Information Technology.
+            Tirana Business University (UniMatch) is a modern, innovative higher education institution dedicated to preparing students for leadership in the fields of Business, Law, and Information Technology.
           </p>
           <ul class="list-unstyled text-muted" style="font-size: 0.9rem;">
             <li><i class="bi bi-check-circle-fill text-danger me-2"></i> Founded by professionals from the BALFIN Group.</li>
