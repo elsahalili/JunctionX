@@ -44,6 +44,7 @@ $hasCompletedQuiz = isset($userData['cv_score']) && isset($userData['quiz_score'
         <li><a href="home.php" class="active">Home</a></li>
           <li><a href="result.php">Matched Universities</a></li>
           <li><a href="quizPage.php">Quiz</a></li>
+          <li><a href="student_dashboard/events_dashboard.php">Event</a></li>
       </ul>
     </nav>
 
