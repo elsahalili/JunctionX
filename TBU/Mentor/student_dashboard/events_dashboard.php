@@ -1,6 +1,9 @@
 <?php
 session_start();
-
+if (!isset($_SESSION["student"])) {
+    echo "Unauthorized access.";
+    exit();
+}
 $eventsFile = __DIR__ . '/../data/events.json';
 if (!file_exists($eventsFile)) {
     file_put_contents($eventsFile, json_encode([]));
@@ -27,9 +30,7 @@ $events = json_decode(file_get_contents($eventsFile), true);
         <?php foreach ($events as $event) : ?>
             <div class="event-box">
                 <div class="event-title"><?= htmlspecialchars($event["title"]) ?></div>
-                <div class="event-date">
-                    <?= htmlspecialchars($event["date"]) ?> <?= htmlspecialchars($event["time"] ?? '') ?> | <?= htmlspecialchars($event["location"]) ?>
-                </div>
+                <div class="event-date"><?= htmlspecialchars($event["date"]) ?> | <?= htmlspecialchars($event["location"]) ?></div>
                 <p><?= htmlspecialchars($event["description"]) ?></p>
             </div>
         <?php endforeach; ?>

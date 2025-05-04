@@ -160,46 +160,11 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
   </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
-  <div class="container position-relative">
-    <!-- Logo -->
-    <a class="navbar-brand fw-bold text-primary" href="index.php">MyAdmin</a>
-
-    <!-- Toggler for mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Centered Links -->
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-      <ul class="navbar-nav navbar-nav-center">
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="manage_universities.php">Universities</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="manage_users.php">Users</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="notifications.php">Notifications</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="manage_events.php">Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="quizzes.php">Questions</a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Right-aligned Button -->
-    <div class="d-none d-lg-block">
-      <a class="btn btn-primary rounded-pill px-4" href="index.php">Back</a>
-    </div>
-  </div>
-</nav>
-
-  <div class="container py-4 mt-lg-5">
+  <div class="container py-4">
     <h2 class="mb-4">Manage Universities</h2>
+    <div class="mb-3 text-center">
+      <a href="../index.php" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
 
     <div class="row flex-lg-row d-flex justify-content-between">
       <!-- Left: Table -->

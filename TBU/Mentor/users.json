@@ -28,10 +28,10 @@
         "file": "users_data\/pranvera1_1746313807.json"
     },
     {
-        "name": "elsa99",
-        "surname": "elsa99",
-        "email": "elsa99@gmail.com",
-        "password": "$2y$10$bJIGmJ\/uUtPPgKVQqjErreuoUJE5icmlckAS6xpXaHlJYdIsRjL\/2",
-        "file": "users_data\/elsa99_1746326431.json"
+        "name": "test",
+        "surname": "test",
+        "email": "test46@gmail.com",
+        "password": "$2y$10$ZLbjDNy9g.Q0c1PJlC4t9Oo7pu9sstwnZiQvl0j72iPrZhOgnxEb2",
+        "file": "users_data\/test_1746346753.json"
     }
 ]

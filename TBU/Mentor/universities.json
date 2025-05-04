@@ -58,12 +58,5 @@
         "website": "https:\/\/unitir.edu.al\/",
         "image": "tirana.jpg",
         "chatBot": "chatNoah.php"
-    },
-    "4": {
-        "description": "Lorem Ipsum",
-        "location": "Durres",
-        "website": "https:\/\/unitir.edu.al\/",
-        "image": "",
-        "chatBot": "chatNoah.php"
     }
 }

@@ -116,8 +116,7 @@ uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
     .card-img-top { height: 200px; object-fit: cover; }
 
     .btn-custom {
-      background-color: #823341; 
-      color: white;
+      background-color: #823341; color: white;
       border-radius: 8px; padding: 10px 16px;
     }
     .btn-custom:hover { 
@@ -130,7 +129,7 @@ uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
       border-radius: 12px; text-decoration: none;
       transition: 0.3s ease; display: inline-block;
     }
-    .meeting-btn:hover { background: linear-gradient(135deg, #a14a58, #823341); transform: translateY(-4px); color: white;}
+    .meeting-btn:hover { background: linear-gradient(135deg, #a14a58, #823341); transform: translateY(-4px); }
 
   </style>
 </head>

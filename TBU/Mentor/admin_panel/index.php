@@ -21,71 +21,55 @@ if (!isset($_SESSION['admin'])) {
     }
 
     body {
-      background-color: #f5f7fa;
+      background-color: #eef2f7;
       font-family: 'Segoe UI', sans-serif;
       color: #2c3e50;
     }
 
-    .navbar-custom {
-      background: linear-gradient(135deg, #823341, #c77482);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .navbar-brand {
-      font-weight: 600;
-      font-size: 1.5rem;
-      color: #fff !important;
-    }
-
-    .navbar-nav .nav-link {
-      color: #fff !important;
-      margin-left: 15px;
-      font-weight: 500;
-      transition: opacity 0.3s;
-    }
-
-    .navbar-nav .nav-link:hover {
-      opacity: 0.85;
-    }
-
-    .dashboard-header {
-      text-align: center;
-      margin-top: 80px;
-      margin-bottom: 40px;
+    .dashboard-container {
       animation: fadeUpIn 0.8s ease-out both;
     }
 
-    .dashboard-header h2 {
-      font-weight: 700;
-      font-size: 2.3rem;
-      color: #673c26;
+    .dashboard-header {
+      background: linear-gradient(135deg, #823341, #c77482);
+      padding: 40px 0;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+      color: #fff;
+      text-align: center;
     }
 
-    .dashboard-container {
+    .dashboard-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
       animation: fadeUpIn 1s ease-out both;
     }
 
     .dashboard-card {
       background-color: #fff;
-      border-radius: 18px;
+      border-radius: 16px;
       padding: 30px;
       text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-      transition: all 0.3s ease;
-      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s, box-shadow 0.3s, background-color 0.2s;
+      animation: fadeUpIn 1.2s ease-out both;
       color: inherit;
+      text-decoration: none;
       display: block;
     }
 
     .dashboard-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-      background-color: #fff5f5;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+      background-color: #fdf6f6;
+      text-decoration: none;
     }
 
     .dashboard-card .bi {
-      font-size: 2.6rem;
-      margin-bottom: 12px;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
       color: #823341;
     }
 
@@ -94,87 +78,59 @@ if (!isset($_SESSION['admin'])) {
     }
 
     .logout-btn:hover {
-      background-color: #ffd3d3;
-    }
-
-    @media (max-width: 576px) {
-      .navbar-brand {
-        font-size: 1.2rem;
-      }
+      background-color: #ffcccc;
     }
   </style>
 </head>
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#"><i class="bi bi-speedometer2 me-2"></i>Admin Panel</a>
-      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="adminNavbar">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="admin/logout.php"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
-          </li>
-        </ul>
-      </div>
+  <div class="container dashboard-container py-5">
+    <div class="dashboard-header">
+      <h1>University Admin Dashboard</h1>
     </div>
-  </nav>
 
-  <!-- Page Header -->
-  <div class="dashboard-header">
-    <h2>Welcome to the Admin Dashboard</h2>
-  </div>
-
-  <!-- Dashboard Grid -->
-  <div class="container dashboard-container pb-5">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+    <div class="row row-cols-1 row-cols-sm-3 g-4">
       <div class="col">
-        <a href="admin/manage_universities.php" class="dashboard-card">
+        <a href="admin/manage_universities.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-building"></i>
           <h5 class="mt-2">Manage Universities</h5>
         </a>
       </div>
 
       <div class="col">
-        <a href="admin/manage_users.php" class="dashboard-card">
+        <a href="admin/manage_users.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-people"></i>
           <h5 class="mt-2">Manage Users</h5>
         </a>
       </div>
 
       <div class="col">
-        <a href="admin/notifications.php" class="dashboard-card">
+        <a href="admin/notifications.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-bell"></i>
           <h5 class="mt-2">Manage Notifications</h5>
         </a>
       </div>
 
       <div class="col">
-        <a href="manage_events.php" class="dashboard-card">
+        <a href="admin/events.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-calendar-event"></i>
           <h5 class="mt-2">Manage Events</h5>
         </a>
       </div>
 
       <div class="col">
-        <a href="admin/quizzes.php" class="dashboard-card">
+        <a href="admin/quizzes.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-question-circle"></i>
           <h5 class="mt-2">Manage Quiz Questions</h5>
         </a>
       </div>
 
       <div class="col">
-        <a href="admin/logout.php" class="dashboard-card logout-btn">
+        <a href="admin/logout.php" class="dashboard-card text-decoration-none logout-btn">
           <i class="bi bi-box-arrow-right"></i>
           <h5 class="mt-2">Log Out</h5>
         </a>
       </div>
     </div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
