@@ -44,7 +44,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">TBU</h1>
+        <h1 class="sitename">UniMatch</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -70,7 +70,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+      <img src="assets/img/0x0.webp" alt="" data-aos="fade-in">
 
       <div class="container">
         <h2 data-aos="fade-up" data-aos-delay="100">Empowering Minds,<br>Building Futures</h2>

@@ -33,5 +33,26 @@
         "email": "test46@gmail.com",
         "password": "$2y$10$ZLbjDNy9g.Q0c1PJlC4t9Oo7pu9sstwnZiQvl0j72iPrZhOgnxEb2",
         "file": "users_data\/test_1746346753.json"
+    },
+    {
+        "name": "test test",
+        "surname": "test test",
+        "email": "testest@gmail.com",
+        "password": "$2y$10$JDtvkIesHTtUJlvNwvJoreWDxcHClhcJCy52vqVOoqk0dwpzkxuCK",
+        "file": "users_data\/test test_1746348077.json"
+    },
+    {
+        "name": "a",
+        "surname": "a",
+        "email": "a@gmail.com",
+        "password": "$2y$10$HXOUSlWcw3KzqLvvTgYGmOmSaG4QBVeNSkP.mLnGr0INB92EnyPbK",
+        "file": "users_data\/a_1746348151.json"
+    },
+    {
+        "name": "baba",
+        "surname": "baba",
+        "email": "baba@gmail.com",
+        "password": "$2y$10$hBfqsdgwgE8BxkMXQBfE3.sQRTNP7s1Zl7csJPRin\/jsmGT6gLWw6",
+        "file": "users_data\/baba_1746348197.json"
     }
 ]

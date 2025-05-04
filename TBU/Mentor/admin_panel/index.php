@@ -80,6 +80,10 @@ if (!isset($_SESSION['admin'])) {
     .logout-btn:hover {
       background-color: #ffcccc;
     }
+
+    .row-centered {
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
@@ -88,43 +92,37 @@ if (!isset($_SESSION['admin'])) {
       <h1>University Admin Dashboard</h1>
     </div>
 
-    <div class="row row-cols-1 row-cols-sm-3 g-4">
-      <div class="col">
+    <!-- Row 1: 2 centered cards -->
+    <div class="row row-cols-1 row-cols-sm-2 g-4 mb-4 row-centered">
+      <div class="col-md-4">
         <a href="admin/manage_universities.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-building"></i>
           <h5 class="mt-2">Manage Universities</h5>
         </a>
       </div>
-
-      <div class="col">
+      <div class="col-md-4">
         <a href="admin/manage_users.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-people"></i>
           <h5 class="mt-2">Manage Users</h5>
         </a>
       </div>
+    </div>
 
-      <div class="col">
-        <a href="admin/notifications.php" class="dashboard-card text-decoration-none">
-          <i class="bi bi-bell"></i>
-          <h5 class="mt-2">Manage Notifications</h5>
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="admin/events.php" class="dashboard-card text-decoration-none">
+    <!-- Row 2: 3 centered cards -->
+    <div class="row row-cols-1 row-cols-sm-3 g-4 row-centered">
+      <div class="col-md-4">
+        <a href="manage_events.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-calendar-event"></i>
           <h5 class="mt-2">Manage Events</h5>
         </a>
       </div>
-
-      <div class="col">
+      <div class="col-md-4">
         <a href="admin/quizzes.php" class="dashboard-card text-decoration-none">
           <i class="bi bi-question-circle"></i>
           <h5 class="mt-2">Manage Quiz Questions</h5>
         </a>
       </div>
-
-      <div class="col">
+      <div class="col-md-4">
         <a href="admin/logout.php" class="dashboard-card text-decoration-none logout-btn">
           <i class="bi bi-box-arrow-right"></i>
           <h5 class="mt-2">Log Out</h5>

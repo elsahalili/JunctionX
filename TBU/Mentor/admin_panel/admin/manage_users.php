@@ -112,16 +112,113 @@ $data = json_decode(file_get_contents("../../users.json"), true) ?? [];
     .table td, .table th {
       vertical-align: middle;
     }
+    :root {
+      --main-color: #833442;
+      --text-color: #333;
+      --hover-color: #a14d5c;
+    }
+
+    .navbar {
+      background-color: #fff;
+    }
+
+    .navbar-brand {
+      color: var(--main-color) !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--main-color);
+    }
+
+    .btn-custom {
+      background-color: var(--main-color);
+      color: #fff;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    .btn-custom:hover {
+      background-color: var(--hover-color);
+      color: #fff;
+    }
+
+    @media (min-width: 992px) {
+      .navbar-nav-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .btn-custom {
+  background-color: #833442;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(131, 52, 66, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #a14d5c;
+  box-shadow: 0 6px 14px rgba(131, 52, 66, 0.4);
+  transform: translateY(-2px);
+}
+
   </style>
 </head>
 <body>
-  <div class="container py-5">
+
+
+<nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+  <div class="container position-relative">
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold text-primary" href="#">MyAdmin</a>
+
+    <!-- Toggler for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Centered Links -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+      <ul class="navbar-nav navbar-nav-center">
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="manage_universities.php">University</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="manage_users.php">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="quizzes.php">Quiz</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="../manage_events.php">Events</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right-aligned Button -->
+    <div class="d-none d-lg-block">
+      <a class="btn btn-custom" href="../index.php">Back</a>
+    </div>
+  </div>
+</nav>
+
+  <div class="container py-5 mt-5">
     <div class="card card-custom">
       <h2 class="mb-4 text-center">User Management</h2>
 
-      <div class="btn-back-wrapper">
+      <!-- <div class="btn-back-wrapper">
         <a href="../index.php" class="btn btn-secondary">Back to Dashboard</a>
-      </div>
+      </div> -->
 
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">

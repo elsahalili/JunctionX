@@ -129,7 +129,7 @@ uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
       border-radius: 12px; text-decoration: none;
       transition: 0.3s ease; display: inline-block;
     }
-    .meeting-btn:hover { background: linear-gradient(135deg, #a14a58, #823341); transform: translateY(-4px); }
+    .meeting-btn:hover { background: linear-gradient(135deg, #a14a58, #823341); transform: translateY(-4px); color: white; }
 
   </style>
 </head>

@@ -40,7 +40,7 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
       background-color: #f9e5e8;
     }
 
-    .btn-warning {
+    .btnEdit {
       background-color: #c77482;
       border-color: #c77482;
       color: white;
@@ -49,7 +49,7 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
       padding: 5px 12px;
     }
 
-    .btn-warning:hover {
+    .btnEdit:hover {
       color: white;
       background-color: #a4535e;
     }
@@ -157,88 +157,186 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
         margin-bottom: 30px;
       }
     }
+
+    :root {
+      --main-color: #833442;
+      --text-color: #333;
+      --hover-color: #a14d5c;
+    }
+
+    .navbar {
+      background-color: #fff;
+    }
+
+    .navbar-brand {
+      color: var(--main-color) !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--main-color);
+    }
+
+    .btn-custom {
+      background-color: #833442;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(131, 52, 66, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #a14d5c;
+      box-shadow: 0 6px 14px rgba(131, 52, 66, 0.4);
+      transform: translateY(-2px);
+    }
+
+    @media (min-width: 992px) {
+      .navbar-nav-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeSlideIn 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .animate-delay {
+      animation-delay: 0.4s;
+    }
   </style>
 </head>
 <body>
-  <div class="container py-4">
-    <h2 class="mb-4">Manage Universities</h2>
-    <div class="mb-3 text-center">
-      <a href="../index.php" class="btn btn-secondary">Back to Dashboard</a>
+    
+<nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+  <div class="container position-relative">
+    <a class="navbar-brand fw-bold text-primary" href="#">MyAdmin</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+      <ul class="navbar-nav navbar-nav-center">
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="manage_universities.php">University</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="manage_users.php">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="quizzes.php">Quiz</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="../manage_events.php">Events</a>
+        </li>
+      </ul>
     </div>
 
-    <div class="row flex-lg-row d-flex justify-content-between">
-      <!-- Left: Table -->
-      <div class="col-lg-7 mb-4">
-        <div class="table-responsive bg-white p-3 rounded shadow-sm">
-          <h4 class="mb-3 text-secondary fw-bold">University Listings</h4>
-          <table class="table align-middle table-hover">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Description</th>
-                <th>Location</th>
-                <th>Website</th>
-                <th>ChatBot</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php $i = 1; foreach($data as $uni): ?>
-                <tr>
-                  <td><?= $i++ ?></td>
-                  <td class="fw-medium text-dark"><?= htmlspecialchars($uni['description']) ?></td>
-                  <td><span class="badge-location"><?= htmlspecialchars($uni['location']) ?></span></td>
-                  <td>
-                    <a href="<?= $uni['website'] ?>" target="_blank" class="website-link">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
-                        <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/>
-                        <path d="M5 5h4V3H5a2 2 0 0 0-2 2v4h2V5zm0 14v-4H3v4a2 2 0 0 0 2 2h4v-2H5zm14 0h-4v2h4a2 2 0 0 0 2-2v-4h-2v4z"/>
-                      </svg>
-                      Visit Site
-                    </a>
-                  </td>
-                  <td><span class="badge-chatbot"><?= htmlspecialchars($uni['chatBot']) ?></span></td>
-                  <td>
-                    <a href="edit_university.php?description=<?= urlencode($uni['description']) ?>" class="btn btn-warning">Edit</a>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Right: Form -->
-      <div class="col-lg-5">
-        <form class="custom-form" action="../api/add.php" method="POST">
-          <h5 class="text-center mb-4">Add New University</h5>
-          <input type="hidden" name="type" value="universities">
-
-          <div class="form-group">
-            <input type="text" name="description" id="description" placeholder=" " required>
-            <label for="description">University Description</label>
-          </div>
-
-          <div class="form-group">
-            <input type="text" name="location" id="location" placeholder=" " required>
-            <label for="location">Location</label>
-          </div>
-
-          <div class="form-group">
-            <input type="text" name="website" id="website" placeholder=" " required>
-            <label for="website">Website</label>
-          </div>
-
-
-          <div class="form-group">
-            <input type="text" name="chatBot" id="chatBot" placeholder=" ">
-            <label for="chatBot">ChatBot URL</label>
-          </div>
-
-          <button type="submit" class="btn-submit">Submit</button>
-        </form>
-      </div>
+    <div class="d-none d-lg-block">
+      <a class="btn btn-custom" href="../index.php">Back</a>
     </div>
   </div>
+</nav>
+
+<div class="container py-4 mt-5">
+  <h2 class="mb-4">Manage Universities</h2>
+
+  <div class="row flex-lg-row d-flex justify-content-between">
+    <!-- Left: Table -->
+    <div class="col-lg-7 mb-4 animate-fade-in">
+      <div class="table-responsive bg-white p-3 rounded shadow-sm">
+        <h4 class="mb-3 text-secondary fw-bold">University Listings</h4>
+        <table class="table align-middle table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Description</th>
+              <th>Location</th>
+              <th>Website</th>
+              <th>ChatBot</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $i = 1; foreach($data as $uni): ?>
+              <tr>
+                <td><?= $i++ ?></td>
+                <td class="fw-medium text-dark"><?= htmlspecialchars($uni['description']) ?></td>
+                <td><span class="badge-location"><?= htmlspecialchars($uni['location']) ?></span></td>
+                <td>
+                  <a href="<?= $uni['website'] ?>" target="_blank" class="website-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+                      <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/>
+                      <path d="M5 5h4V3H5a2 2 0 0 0-2 2v4h2V5zm0 14v-4H3v4a2 2 0 0 0 2 2h4v-2H5zm14 0h-4v2h4a2 2 0 0 0 2-2v-4h-2v4z"/>
+                    </svg>
+                    Visit Site
+                  </a>
+                </td>
+                <td><span class="badge-chatbot"><?= htmlspecialchars($uni['chatBot']) ?></span></td>
+                <td>
+                  <a href="edit_university.php?description=<?= urlencode($uni['description']) ?>" class="btn btnEdit">Edit</a>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="col-lg-5 animate-fade-in animate-delay">
+      <form class="custom-form" action="../api/add.php" method="POST">
+        <h5 class="text-center mb-4">Add New University</h5>
+        <input type="hidden" name="type" value="universities">
+
+        <div class="form-group">
+          <input type="text" name="description" id="description" placeholder=" " required>
+          <label for="description">University Description</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="location" id="location" placeholder=" " required>
+          <label for="location">Location</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="website" id="website" placeholder=" " required>
+          <label for="website">Website</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="chatBot" id="chatBot" placeholder=" ">
+          <label for="chatBot">ChatBot URL</label>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
