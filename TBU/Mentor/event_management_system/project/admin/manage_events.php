@@ -57,7 +57,7 @@ if (isset($_GET['edit'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manage Events</title>
+    <title>UniMatch</title>
     <style>
         body { font-family: sans-serif; margin: 2rem; }
         .event-box {

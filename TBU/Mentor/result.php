@@ -131,7 +131,7 @@ uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Your Match Results</title>
+  <title>UniMatch</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">

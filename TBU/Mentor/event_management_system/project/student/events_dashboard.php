@@ -21,7 +21,7 @@ $events = json_decode(file_get_contents($eventsFile), true);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Event Dashboard</title>
+    <title>UniMatch</title>
     <style>
         body { font-family: sans-serif; margin: 2rem; }
         .event-box {

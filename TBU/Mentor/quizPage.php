@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'quiz') {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Match Me to My Future</title>
+  <title>UniMatch</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
