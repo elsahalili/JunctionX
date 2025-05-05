@@ -6,9 +6,7 @@
   <title>UniMatch</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -34,7 +32,8 @@
     .chat-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 10px;
       background: #ffffff;
       padding: 16px 20px;
       border-bottom: 1px solid #eee;
@@ -125,21 +124,14 @@
       border-radius: 20px;
       font-size: 14px;
     }
-    .chat-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* changed */
-    gap: 10px; /* add spacing between back button and title */
-        }
-
   </style>
 </head>
 <body>
   <div class="chat-wrapper">
     <div class="chat-header">
-    <button id="back-button" style="background: none; border: none; font-size: 15px; color: #333; cursor: pointer;">
+      <button id="back-button" style="background: none; border: none; font-size: 15px; color: #333; cursor: pointer;">
         <i class="fas fa-arrow-left"></i>
-    </button>
+      </button>
       <h2>Noah</h2>
       <div class="status">Online</div>
     </div>
@@ -155,78 +147,74 @@
   </div>
 
   <script>
-  window.addEventListener("load", () => {
-    const sendBtn = document.getElementById("send-btn");
-    const messageInput = document.getElementById("message-input");
-    const chatBody = document.getElementById("chat-body");
+    window.addEventListener("load", () => {
+      const sendBtn = document.getElementById("send-btn");
+      const messageInput = document.getElementById("message-input");
+      const chatBody = document.getElementById("chat-body");
 
-    const replies = [
-      "Sure, I'm here to help!",
-      "Can you tell me more about what you're looking for?",
-      "Great! Let's get started.",
-      "Feel free to ask any question."
-    ];
-    let replyIndex = 0;
+      const replies = [
+        "Hi, how can I help you?",
+        "Yes, the University of Tirana offers exchange opportunities through Erasmus+ and other programs for students to study abroad.",
+        "My favorite part is the supportive community and the chance to learn from passionate professors in a vibrant campus environment.",
+        "Sorry, this is all you can."
+      ];
+      let replyIndex = 0;
 
-    function addMessage(text, type = "sent") {
-      const message = document.createElement("div");
-      message.classList.add("message", type);
-      message.textContent = text;
-      chatBody.appendChild(message);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function typeMessage(text) {
-      const message = document.createElement("div");
-      message.classList.add("message", "received");
-      chatBody.appendChild(message);
-
-      let index = 0;
-      const typingInterval = setInterval(() => {
-        if (index < text.length) {
-          message.textContent += text.charAt(index);
-          index++;
-        } else {
-          clearInterval(typingInterval);
-        }
+      function addMessage(text, type = "sent") {
+        const message = document.createElement("div");
+        message.classList.add("message", type);
+        message.textContent = text;
+        chatBody.appendChild(message);
         chatBody.scrollTop = chatBody.scrollHeight;
-      }, 50);
-    }
-
-    function sendMessage() {
-      const text = messageInput.value.trim();
-      if (!text) return;
-
-      addMessage(text, "sent");
-      messageInput.value = "";
-
-      if (replyIndex < replies.length) {
-        setTimeout(() => {
-          addMessage(replies[replyIndex], "received");
-          replyIndex++;
-        }, 1200);
       }
-    }
 
-    sendBtn.addEventListener("click", sendMessage);
-    messageInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") sendMessage();
+      function typeMessage(text) {
+        const message = document.createElement("div");
+        message.classList.add("message", "received");
+        chatBody.appendChild(message);
+
+        let index = 0;
+        const typingInterval = setInterval(() => {
+          if (index < text.length) {
+            message.textContent += text.charAt(index);
+            index++;
+          } else {
+            clearInterval(typingInterval);
+          }
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 50);
+      }
+
+      function sendMessage() {
+        const text = messageInput.value.trim();
+        if (!text) return;
+
+        addMessage(text, "sent");
+        messageInput.value = "";
+
+        if (replyIndex < replies.length) {
+          setTimeout(() => {
+            typeMessage(replies[replyIndex]);
+            replyIndex++;
+          }, 1200);
+        }
+      }
+
+      sendBtn.addEventListener("click", sendMessage);
+      messageInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") sendMessage();
+      });
+
+      setTimeout(() => {
+        typeMessage("Hello! I'm a student at the university you matched with (MIT). How can I help you today?");
+      }, 1500);
     });
+  </script>
 
-    // Show welcome message with typing animation
-    setTimeout(() => {
-      typeMessage("Hello! I'm your AI assistant Noah. How can I help you today?");
-    }, 1500);
-  });
-</script>
-<script>
-  document.getElementById("back-button").addEventListener("click", () => {
-    window.location.href = "universityPage.php?name=MIT";
-  });
-</script>
-
-
-
-
+  <script>
+    document.getElementById("back-button").addEventListener("click", () => {
+      window.location.href = "universityPage.php?name=MIT";
+    });
+  </script>
 </body>
 </html>

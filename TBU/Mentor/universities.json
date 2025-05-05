@@ -5,7 +5,7 @@
         "location": "Cambridge, Massachusetts, USAA",
         "website": "https:\/\/www.mit.edu",
         "image": "mit.jpg",
-        "chatBot": "chatNoah.phptyu"
+        "chatBot": "chatNoah.php"
     },
     "Oxford": {
         "slug": "oxford",
@@ -18,7 +18,7 @@
     "Tirana University": {
         "slug": "tirana-university",
         "description": "A leading public university in Albania known for its wide range of programs.",
-        "location": "Tirana, Albania",
+        "location": "Tirana, Albaniaaa",
         "website": "https:\/\/www.unitir.edu.al",
         "image": "tirana_university.jpg",
         "chatBot": "chatEthan.php"
@@ -57,6 +57,13 @@
         "location": "tirana",
         "website": "https:\/\/unitir.edu.al\/",
         "image": "tirana.jpg",
+        "chatBot": "chatNoah.php"
+    },
+    "4": {
+        "description": "fdghjgfdsffghf",
+        "location": "tetovo",
+        "website": "https:\/\/unite.edu.mk\/en\/",
+        "image": "",
         "chatBot": "chatNoah.php"
     }
 }
