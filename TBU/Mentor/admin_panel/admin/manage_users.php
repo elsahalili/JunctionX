@@ -112,7 +112,8 @@ $data = json_decode(file_get_contents("../../users.json"), true) ?? [];
     .table td, .table th {
       vertical-align: middle;
     }
-    :root {
+
+   :root {
       --main-color: #833442;
       --text-color: #333;
       --hover-color: #a14d5c;
@@ -177,40 +178,40 @@ $data = json_decode(file_get_contents("../../users.json"), true) ?? [];
 <body>
 
 
-<nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
-  <div class="container position-relative">
-    <!-- Logo -->
-    <a class="navbar-brand fw-bold text-primary" href="#">MyAdmin</a>
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+    <div class="container position-relative">
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold text-primary" href="#">MyAdmin</a>
 
-    <!-- Toggler for mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <!-- Toggler for mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Centered Links -->
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-      <ul class="navbar-nav navbar-nav-center">
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="manage_universities.php">University</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="manage_users.php">Users</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="quizzes.php">Quiz</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="../manage_events.php">Events</a>
-        </li>
-      </ul>
+      <!-- Centered Links -->
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+        <ul class="navbar-nav navbar-nav-center">
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="manage_universities.php">University</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="manage_users.php">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="quizzes.php">Quiz</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="../manage_events.php">Events</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right-aligned Button -->
+      <div class="d-none d-lg-block">
+        <a class="btn btn-custom" href="../index.php">Back</a>
+      </div>
     </div>
-
-    <!-- Right-aligned Button -->
-    <div class="d-none d-lg-block">
-      <a class="btn btn-custom" href="../index.php">Back</a>
-    </div>
-  </div>
-</nav>
+  </nav>
 
   <div class="container py-5 mt-5">
     <div class="card card-custom">

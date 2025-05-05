@@ -177,20 +177,32 @@
     }
 
     function typeMessage(text) {
-      const message = document.createElement("div");
-      message.classList.add("message", "received");
-      chatBody.appendChild(message);
+      // Create and show typing indicator
+      const typingIndicator = document.createElement("div");
+      typingIndicator.classList.add("message", "received");
+      typingIndicator.textContent = "Ethan is typing...";
+      chatBody.appendChild(typingIndicator);
+      chatBody.scrollTop = chatBody.scrollHeight;
 
-      let index = 0;
-      const typingInterval = setInterval(() => {
-        if (index < text.length) {
-          message.textContent += text.charAt(index);
-          index++;
-        } else {
-          clearInterval(typingInterval);
-        }
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }, 50);
+      // After short delay, remove indicator and start typing message
+      setTimeout(() => {
+        chatBody.removeChild(typingIndicator);
+
+        const message = document.createElement("div");
+        message.classList.add("message", "received");
+        chatBody.appendChild(message);
+
+        let index = 0;
+        const typingInterval = setInterval(() => {
+          if (index < text.length) {
+            message.textContent += text.charAt(index);
+            index++;
+          } else {
+            clearInterval(typingInterval);
+          }
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 50);
+      }, 800); // Delay before typing starts
     }
 
     function sendMessage() {
@@ -202,7 +214,7 @@
 
       if (replyIndex < replies.length) {
         setTimeout(() => {
-          addMessage(replies[replyIndex], "received");
+          typeMessage(replies[replyIndex]);
           replyIndex++;
         }, 1200);
       }
@@ -215,15 +227,11 @@
 
     // Show welcome message with typing animation
     setTimeout(() => {
-      typeMessage("Hello! I'm Ethan a student at the university you matched with. How can I help you today?");
+      typeMessage("Hello! I'm Ethan, a student at the university you matched with. How can I help you today?");
     }, 1500);
   });
 </script>
-<script>
-  document.getElementById("back-button").addEventListener("click", () => {
-    window.location.href = "universityPage.php?name=Tirana+University";
-  });
-</script>
+
 
 
 

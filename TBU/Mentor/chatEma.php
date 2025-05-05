@@ -177,20 +177,30 @@
     }
 
     function typeMessage(text) {
-      const message = document.createElement("div");
-      message.classList.add("message", "received");
-      chatBody.appendChild(message);
+      const typingIndicator = document.createElement("div");
+      typingIndicator.classList.add("message", "received");
+      typingIndicator.textContent = "Ema is typing...";
+      chatBody.appendChild(typingIndicator);
+      chatBody.scrollTop = chatBody.scrollHeight;
 
-      let index = 0;
-      const typingInterval = setInterval(() => {
-        if (index < text.length) {
-          message.textContent += text.charAt(index);
-          index++;
-        } else {
-          clearInterval(typingInterval);
-        }
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }, 50);
+      setTimeout(() => {
+        chatBody.removeChild(typingIndicator);
+
+        const message = document.createElement("div");
+        message.classList.add("message", "received");
+        chatBody.appendChild(message);
+
+        let index = 0;
+        const typingInterval = setInterval(() => {
+          if (index < text.length) {
+            message.textContent += text.charAt(index);
+            index++;
+          } else {
+            clearInterval(typingInterval);
+          }
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 50);
+      }, 600);
     }
 
     function sendMessage() {
@@ -202,9 +212,9 @@
 
       if (replyIndex < replies.length) {
         setTimeout(() => {
-          addMessage(replies[replyIndex], "received");
+          typeMessage(replies[replyIndex]);
           replyIndex++;
-        }, 1200);
+        }, 1000);
       }
     }
 
@@ -213,7 +223,7 @@
       if (e.key === "Enter") sendMessage();
     });
 
-    // Show welcome message with typing animation
+    // Initial welcome message
     setTimeout(() => {
       typeMessage("Hello! I'm your AI assistant Ema. How can I help you today?");
     }, 1500);
@@ -224,6 +234,7 @@
     window.location.href = "universityPage.php?name=Oxford";
   });
 </script>
+
 
 
 

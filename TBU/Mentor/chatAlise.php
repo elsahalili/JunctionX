@@ -126,20 +126,19 @@
       font-size: 14px;
     }
     .chat-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* changed */
-    gap: 10px; /* add spacing between back button and title */
-        }
-
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; /* changed */
+      gap: 10px; /* add spacing between back button and title */
+    }
   </style>
 </head>
 <body>
   <div class="chat-wrapper">
     <div class="chat-header">
-    <button id="back-button" style="background: none; border: none; font-size: 15px; color: #333; cursor: pointer;">
+      <button id="back-button" style="background: none; border: none; font-size: 15px; color: #333; cursor: pointer;">
         <i class="fas fa-arrow-left"></i>
-    </button>
+      </button>
       <h2>Alice</h2>
       <div class="status">Online</div>
     </div>
@@ -155,78 +154,89 @@
   </div>
 
   <script>
-  window.addEventListener("load", () => {
-    const sendBtn = document.getElementById("send-btn");
-    const messageInput = document.getElementById("message-input");
-    const chatBody = document.getElementById("chat-body");
+    window.addEventListener("load", () => {
+      const sendBtn = document.getElementById("send-btn");
+      const messageInput = document.getElementById("message-input");
+      const chatBody = document.getElementById("chat-body");
 
-    const replies = [
-      "Sure, I'm here to help!",
-      "Can you tell me more about what you're looking for?",
-      "Great! Let's get started.",
-      "Feel free to ask any question."
-    ];
-    let replyIndex = 0;
+      const replies = [
+        "Sure, I'm here to help!",
+        "Can you tell me more about what you're looking for?",
+        "Great! Let's get started.",
+        "Feel free to ask any question."
+      ];
+      let replyIndex = 0;
 
-    function addMessage(text, type = "sent") {
-      const message = document.createElement("div");
-      message.classList.add("message", type);
-      message.textContent = text;
-      chatBody.appendChild(message);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function typeMessage(text) {
-      const message = document.createElement("div");
-      message.classList.add("message", "received");
-      chatBody.appendChild(message);
-
-      let index = 0;
-      const typingInterval = setInterval(() => {
-        if (index < text.length) {
-          message.textContent += text.charAt(index);
-          index++;
-        } else {
-          clearInterval(typingInterval);
-        }
+      function addMessage(text, type = "sent") {
+        const message = document.createElement("div");
+        message.classList.add("message", type);
+        message.textContent = text;
+        chatBody.appendChild(message);
         chatBody.scrollTop = chatBody.scrollHeight;
-      }, 50);
-    }
-
-    function sendMessage() {
-      const text = messageInput.value.trim();
-      if (!text) return;
-
-      addMessage(text, "sent");
-      messageInput.value = "";
-
-      if (replyIndex < replies.length) {
-        setTimeout(() => {
-          addMessage(replies[replyIndex], "received");
-          replyIndex++;
-        }, 1200);
       }
-    }
 
-    sendBtn.addEventListener("click", sendMessage);
-    messageInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") sendMessage();
+      function typeMessage(text) {
+        // Show typing indicator first
+        const typingIndicator = document.createElement("div");
+        typingIndicator.classList.add("message", "received");
+        typingIndicator.textContent = "Alice is typing...";
+        chatBody.appendChild(typingIndicator);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Wait before showing actual response
+        setTimeout(() => {
+          // Remove the typing indicator
+          chatBody.removeChild(typingIndicator);
+
+          const message = document.createElement("div");
+          message.classList.add("message", "received");
+          chatBody.appendChild(message);
+
+          let index = 0;
+          const typingInterval = setInterval(() => {
+            if (index < text.length) {
+              message.textContent += text.charAt(index);
+              index++;
+            } else {
+              clearInterval(typingInterval);
+            }
+            chatBody.scrollTop = chatBody.scrollHeight;
+          }, 50);
+        }, 800); // Adjust this delay for how long typing animation lasts
+      }
+
+      function sendMessage() {
+        const text = messageInput.value.trim();
+        if (!text) return;
+
+        addMessage(text, "sent");
+        messageInput.value = "";
+
+        if (replyIndex < replies.length) {
+          setTimeout(() => {
+            typeMessage(replies[replyIndex]);
+            replyIndex++;
+          }, 1200);
+        }
+      }
+
+      sendBtn.addEventListener("click", sendMessage);
+      messageInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") sendMessage();
+      });
+
+      // Show welcome message with typing animation
+      setTimeout(() => {
+        typeMessage("Hello! I'm your AI assistant Alice. How can I help you today?");
+      }, 1500);
     });
+  </script>
 
-    // Show welcome message with typing animation
-    setTimeout(() => {
-      typeMessage("Hello! I'm your AI assistant Alice. How can I help you today?");
-    }, 1500);
-  });
-</script>
-<script>
-  document.getElementById("back-button").addEventListener("click", () => {
-    window.location.href = "universityPage.php?name=LSE";
-  });
-</script>
-
-
-
+  <script>
+    document.getElementById("back-button").addEventListener("click", () => {
+      window.location.href = "universityPage.php?name=LSE";
+    });
+  </script>
 
 </body>
 </html>

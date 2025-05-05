@@ -1,6 +1,6 @@
 [
     {
-        "name": "testt2131",
+        "name": "testt2",
         "surname": "tets",
         "email": "test223@gmail.com",
         "password": "$2y$10$kx5N4lCtNftrEJhARi0NIeKooBelQQBNkw1BjZh28zzh5d94O25o2",
@@ -75,5 +75,12 @@
         "email": "test2@gmail.com",
         "password": "$2y$10$a1HTuoY0S1R86bfkksiC7OqDE6kB8yq\/aH5jym7khSuhipqSEguFq",
         "file": "users_data\/test2_1746351350.json"
+    },
+    {
+        "name": "filan",
+        "surname": "filan",
+        "email": "filan@gmail.com",
+        "password": "$2y$10$whyDYdUZcCdHGw1yq74SauAoiV3DAJZvTXs6.BM1YAqSQu.mvr3H6",
+        "file": "users_data\/filan_1746463649.json"
     }
 ]

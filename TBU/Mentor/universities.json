@@ -5,7 +5,7 @@
         "location": "Cambridge, Massachusetts, USAA",
         "website": "https:\/\/www.mit.edu",
         "image": "mit.jpg",
-        "chatBot": "chatNoah.phptyu"
+        "chatBot": "chatNoah.php"
     },
     "Oxford": {
         "slug": "oxford",
