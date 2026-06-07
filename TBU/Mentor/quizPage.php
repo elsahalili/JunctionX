@@ -1,25 +1,36 @@
 <?php
 session_start();
 
+// Make email safe for filenames
 $userEmail = $_SESSION['user']['email'] ?? 'guest@example.com';
-$userFile = "users_data/" . $userEmail . ".json";
+$safeEmail = str_replace(['@', '.'], '_', $userEmail);
+$userFile = "users_data/" . $safeEmail . ".json";
 $step = $_GET['step'] ?? 'start';
 $message = "";
-$faculties = [
-    'Computer Science' => ['Tirana University' => 90, 'MIT' => 100, 'Oxford' => 85],
-    'Medicine' => ['Harvard' => 95, 'Tirana University' => 75],
-    'Business' => ['LSE' => 88, 'Tirana University' => 60],
-];
-$quizQuestions = [
-    'What subject do you enjoy most in school?' => ['Math', 'Biology', 'Economics'],
-    'What career do you see yourself in?' => ['Developer', 'Doctor', 'Entrepreneur']
-];
 
+// Load quiz questions
+$quizQuestions = [];
+$quizPath = __DIR__ . "/admin_panel/data/quiz_questions.json";
+
+if (file_exists($quizPath)) {
+    $json = file_get_contents($quizPath);
+    $data = json_decode($json, true);
+    if (is_array($data)) {
+        $quizQuestions = $data;
+    } else {
+        $message = "Invalid quiz format.";
+    }
+} else {
+    $message = "Quiz file not found.";
+}
+
+// Initialize user file
 if (!file_exists($userFile)) {
     file_put_contents($userFile, json_encode([]));
 }
 $userData = json_decode(file_get_contents($userFile), true);
 
+// Handle CV upload
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'upload') {
     $cv = $_FILES['cv'] ?? null;
     if ($cv && $cv['tmp_name']) {
@@ -30,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'upload') {
             'Business' => (strpos($cvText, 'business') !== false || strpos($cvText, 'marketing') !== false) ? 50 : 0,
         ];
         $userData['cv_score'] = $profile;
+        $userData['cv_uploaded'] = true;
         file_put_contents($userFile, json_encode($userData));
         header("Location: quizPage.php?step=quiz");
         exit;
@@ -38,14 +50,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'upload') {
     }
 }
 
+// Handle quiz submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'quiz') {
-    $answers = $_POST;
     $score = ['Computer Science' => 0, 'Medicine' => 0, 'Business' => 0];
 
-    foreach ($answers as $q => $ans) {
-        if ($ans === 'Math' || $ans === 'Developer') $score['Computer Science'] += 50;
-        if ($ans === 'Biology' || $ans === 'Doctor') $score['Medicine'] += 50;
-        if ($ans === 'Economics' || $ans === 'Entrepreneur') $score['Business'] += 50;
+    foreach ($_POST as $key => $ans) {
+        $ans = strtolower(trim($ans));
+
+        if (in_array($ans, ['math', 'developer'])) {
+            $score['Computer Science'] += 50;
+        }
+        if (in_array($ans, ['biology', 'doctor'])) {
+            $score['Medicine'] += 50;
+        }
+        if (in_array($ans, ['economics', 'entrepreneur'])) {
+            $score['Business'] += 50;
+        }
     }
 
     $userData['quiz_score'] = $score;
@@ -54,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'quiz') {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,12 +204,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'quiz') {
 <?php elseif ($step === 'quiz'): ?>
   <form method="POST" action="quizPage.php?step=quiz" id="quizForm">
     <h2>Quiz</h2>
-    <?php $index = 0; foreach ($quizQuestions as $question => $options): ?>
+    <?php $index = 0; foreach ($quizQuestions as $q): ?>
       <div class="quiz-card" style="<?= $index === 0 ? '' : 'display:none;' ?>">
-        <p><strong><?= $question ?></strong></p>
-        <?php foreach ($options as $option): ?>
+        <p><strong><?= htmlspecialchars($q['question']) ?></strong></p>
+        <?php foreach ($q['options'] as $option): ?>
           <label>
-            <input type="radio" name="<?= md5($question) ?>" value="<?= $option ?>" required> <?= $option ?>
+            <input type="radio" name="q<?= $index ?>" value="<?= htmlspecialchars($option) ?>" required> <?= htmlspecialchars($option) ?>
           </label>
         <?php endforeach; ?>
         <br>
@@ -205,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'quiz') {
 <?php endif; ?>
 
 <?php if ($message): ?>
-  <p style="color:red; margin-top: 15px; font-weight: bold;"><?= $message ?></p>
+  <p style="color:red; margin-top: 15px; font-weight: bold;"><?= htmlspecialchars($message) ?></p>
 <?php endif; ?>
 
 <script>
@@ -215,9 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'quiz') {
   fileInput?.addEventListener('change', function() {
     fileNameDisplay.textContent = fileInput.files.length > 0 ? "Selected file: " + fileInput.files[0].name : "";
   });
-</script>
 
-<script>
   const cards = document.querySelectorAll('.quiz-card');
   const nextButtons = document.querySelectorAll('.next-btn');
 
@@ -233,5 +250,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'quiz') {
     });
   });
 </script>
+
 </body>
 </html>

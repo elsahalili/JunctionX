@@ -6,9 +6,7 @@
   <title>UniMatch</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -34,7 +32,8 @@
     .chat-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 10px;
       background: #ffffff;
       padding: 16px 20px;
       border-bottom: 1px solid #eee;
@@ -238,6 +237,5 @@
       window.location.href = "universityPage.php?name=MIT";
     });
   </script>
-
 </body>
 </html>

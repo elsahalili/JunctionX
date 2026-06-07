@@ -45,55 +45,16 @@ $userFile = "users_data/" . $safeEmail . ".json";
 
 // STEP 3: Check if file exists
 if (!file_exists($userFile)) {
-  ?>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Take Quiz</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      body {
-        background-color: #f0f4f8; font-family: 'Segoe UI', sans-serif;
-        display: flex; justify-content: center; align-items: center;
-        height: 100vh; margin: 0;
-      }
-      .quiz-card {
-        background: white; border-radius: 20px;
-        box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-        padding: 40px; text-align: center; max-width: 400px;
-        text-decoration: none; color: inherit; transition: 0.3s ease-in-out;
-      }
-      .quiz-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 16px 32px rgba(0,0,0,0.15);
-      }
-    </style>
-  </head>
-  <body>
-    <a href="quizPage.php" class="quiz-card">
-      <h2>No Quiz Data Found</h2>
-      <p>Please take the quiz to get started.</p>
-    </a>
-  </body>
-  </html>
-  <?php
+  header("Location: quizPage.php");
   exit();
 }
 
 // STEP 4: Load and validate user data
 $userData = json_decode(file_get_contents($userFile), true);
 
-if (!isset($userData['cv_score']) || !isset($userData['quiz_score'])) {
-  die('<div style="padding: 2rem; text-align: center; font-family: sans-serif; background-color: #fff3cd; color: #856404;">
-    <strong>Incomplete Data:</strong> Please retake the quiz or CV form.
-  </div>');
-}
-
-// Debug (optional - remove when done)
-echo "<!-- DEBUG: User data loaded:
-" . print_r($userData, true) . "-->";
+// Fallbacks
+$quizScore = $userData['quiz_score'] ?? [];
+$cvScore = $userData['cv_score'] ?? [];
 
 // STEP 5: Faculty/University Matching
 $faculties = [
@@ -105,17 +66,15 @@ $faculties = [
 $results = [];
 
 foreach ($faculties as $faculty => $universities) {
-  $cv = $userData['cv_score'][$faculty] ?? 0;
-  $quiz = $userData['quiz_score'][$faculty] ?? 0;
+  $cv = $cvScore[$faculty] ?? 0;
+  $quiz = $quizScore[$faculty] ?? 0;
   $totalScore = min($cv + $quiz, 100);
 
   if ($totalScore == 0) continue;
 
   $facultyResults = [];
   foreach ($universities as $uni => $percent) {
-    if ($percent > 0) {
-      $facultyResults[$uni] = $percent;
-    }
+    $facultyResults[$uni] = $percent;
   }
 
   if (!empty($facultyResults)) {
@@ -126,7 +85,6 @@ foreach ($faculties as $faculty => $universities) {
 uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
 ?>
 
-<!-- HTML Layout Continues -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

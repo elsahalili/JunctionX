@@ -204,11 +204,11 @@
     }
 
     function sendMessage() {
-      const text = messageInput.value.trim();
-      if (!text) return;
+        const text = messageInput.value.trim();
+        if (!text) return;
 
-      addMessage(text, "sent");
-      messageInput.value = "";
+        addMessage(text, "sent");
+        messageInput.value = "";
 
       if (replyIndex < replies.length) {
         setTimeout(() => {
@@ -217,6 +217,13 @@
         }, 1000);
       }
     }
+        if (replyIndex < replies.length) {
+            setTimeout(() => {
+            typeMessage(replies[replyIndex]);
+            replyIndex++;
+            }, 1200);
+        }
+     }
 
     sendBtn.addEventListener("click", sendMessage);
     messageInput.addEventListener("keydown", (e) => {

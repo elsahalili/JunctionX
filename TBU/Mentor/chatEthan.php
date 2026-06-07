@@ -161,10 +161,10 @@
     const chatBody = document.getElementById("chat-body");
 
     const replies = [
-      "Sure, I'm here to help!",
-      "Can you tell me more about what you're looking for?",
-      "Great! Let's get started.",
-      "Feel free to ask any question."
+      "It depends on your interest and effort. Every major has its challenges, but with dedication, it's manageable at the University of Tirana.",
+      "Yes, the campus at the University of Tirana is welcoming and lively, with plenty of spaces to study, socialize, and get involved in student life.",
+      "At the University of Tirana, classes are generally more **theoretical**, especially in the early years. However, some programs include **practical work, projects, or internships** as you progress, depending on the major.",
+      "Sorry but this is all you can ask!"
     ];
     let replyIndex = 0;
 
@@ -206,19 +206,20 @@
     }
 
     function sendMessage() {
-      const text = messageInput.value.trim();
-      if (!text) return;
+    const text = messageInput.value.trim();
+    if (!text) return;
 
-      addMessage(text, "sent");
-      messageInput.value = "";
+    addMessage(text, "sent");
+    messageInput.value = "";
 
-      if (replyIndex < replies.length) {
+    if (replyIndex < replies.length) {
         setTimeout(() => {
           typeMessage(replies[replyIndex]);
           replyIndex++;
         }, 1200);
-      }
     }
+    }
+
 
     sendBtn.addEventListener("click", sendMessage);
     messageInput.addEventListener("keydown", (e) => {

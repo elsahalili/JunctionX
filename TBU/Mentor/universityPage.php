@@ -153,7 +153,7 @@ if (!file_exists($imagePath)) {
                     <?php if (!empty($universityData['chatBot'])): ?>
                         <div class="info-item">
                             <i class="fas fa-robot"></i>
-                            <a href="<?= htmlspecialchars($universityData['chatBot']) ?>" class="btn btn-sm btn-outline-primary ms-2">Talk to Bot</a>
+                            <a href="<?= htmlspecialchars($universityData['chatBot']) ?>" class="btn btn-sm btn-outline-primary ms-2">Have Questions?</a>
                         </div>
                     <?php endif; ?>
 

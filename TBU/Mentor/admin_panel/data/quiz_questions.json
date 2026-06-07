@@ -1,16 +1,23 @@
 [
     {
-        "question": "Sa ore ne dite fleni?",
+        "question": "Whats your favourie subject?",
         "options": [
-            "2",
-            "21",
-            "1"
+            "Math",
+            "Biology",
+            "Econimics"
         ]
     },
     {
-        "question": "how are you?",
+        "question": "Are you good when working with teams?",
         "options": [
             "good",
+            "mid",
+            "bad"
+        ]
+    },
+    {
+        "question": "hello how are you",
+        "options": [
             "good",
             "bad"
         ]
