@@ -1,8 +1,6 @@
 <?php
+require_once __DIR__ . '/app.php';
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 // STEP 1: Check session email
 $userEmail = $_SESSION['user']['email'] ?? null;
@@ -39,18 +37,16 @@ if (!$userEmail) {
   exit;
 }
 
-// STEP 2: Sanitize filename
-$safeEmail = str_replace(['@', '.'], '_', $userEmail);
-$userFile = "users_data/" . $safeEmail . ".json";
+$userFile = app_current_user_file();
 
 // STEP 3: Check if file exists
-if (!file_exists($userFile)) {
+if (!$userFile || !is_file($userFile)) {
   header("Location: quizPage.php");
   exit();
 }
 
 // STEP 4: Load and validate user data
-$userData = json_decode(file_get_contents($userFile), true);
+$userData = app_read_json($userFile, []);
 
 // Fallbacks
 $quizScore = $userData['quiz_score'] ?? [];
@@ -94,7 +90,7 @@ uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <style>
     body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; animation: fadeIn 1s ease-in; }
     @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
@@ -119,7 +115,7 @@ uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
 
 <header class="header d-flex align-items-center sticky-top mb-5">
   <div class="container-fluid container-xl d-flex justify-content-between align-items-center">
-    <a href="index.html" class="logo"><h1 class="sitename">UniMatch</h1></a>
+    <a href="index.php" class="logo"><h1 class="sitename">UniMatch</h1></a>
     <nav id="navmenu" class="navmenu">
       <ul class="m-0 d-flex gap-4">
         <li><a href="home.php">Home</a></li>
@@ -129,12 +125,9 @@ uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
     </nav>
     <div class="dropdown custom-dropdown">
       <a class="btn-getstarted dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa-solid fa-circle-user text-white me-2"></i>Profile
+        <i class="bi bi-person-circle text-white me-2"></i>Profile
       </a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-        <li><a class="dropdown-item" href="profile.php">My Profile</a></li>
-        <li><a class="dropdown-item" href="settings.php">Settings</a></li>
-        <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="logout.php">Logout</a></li>
       </ul>
     </div>
@@ -181,6 +174,6 @@ uasort($results, fn($a, $b) => $b['score'] <=> $a['score']);
   <?php endif; ?>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

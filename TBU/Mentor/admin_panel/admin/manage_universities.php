@@ -1,11 +1,12 @@
 <?php
+require_once __DIR__ . '/../../app.php';
 session_start();
 if (!isset($_SESSION["admin"])) {
     header("Location: login.php");
     exit();
 }
 
-$data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
+$data = app_read_json(app_path('universities.json'), []);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
   <meta charset="UTF-8">
   <title>Manage Universities</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       background-color: #f4f6f9;
@@ -273,6 +274,7 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
           <thead>
             <tr>
               <th>#</th>
+              <th>Name</th>
               <th>Description</th>
               <th>Location</th>
               <th>Website</th>
@@ -281,9 +283,10 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
             </tr>
           </thead>
           <tbody>
-            <?php $i = 1; foreach($data as $uni): ?>
+            <?php $i = 1; foreach($data as $uniName => $uni): ?>
               <tr>
                 <td><?= $i++ ?></td>
+                <td class="fw-semibold"><?= htmlspecialchars((string) $uniName) ?></td>
                 <td class="fw-medium text-dark"><?= htmlspecialchars($uni['description']) ?></td>
                 <td><span class="badge-location"><?= htmlspecialchars($uni['location']) ?></span></td>
                 <td>
@@ -297,7 +300,7 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
                 </td>
                 <td><span class="badge-chatbot"><?= htmlspecialchars($uni['chatBot']) ?></span></td>
                 <td>
-                  <a href="edit_university.php?description=<?= urlencode($uni['description']) ?>" class="btn btnEdit">Edit</a>
+                  <a href="edit_university.php?name=<?= urlencode((string) $uniName) ?>" class="btn btnEdit">Edit</a>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -311,6 +314,11 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
       <form class="custom-form" action="../api/add.php" method="POST">
         <h5 class="text-center mb-4">Add New University</h5>
         <input type="hidden" name="type" value="universities">
+
+        <div class="form-group">
+          <input type="text" name="name" id="name" placeholder=" " required>
+          <label for="name">University Name</label>
+        </div>
 
         <div class="form-group">
           <input type="text" name="description" id="description" placeholder=" " required>
@@ -337,6 +345,6 @@ $data = json_decode(file_get_contents("../../universities.json"), true) ?? [];
     </div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

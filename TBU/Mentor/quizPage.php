@@ -1,10 +1,9 @@
 <?php
+require_once __DIR__ . '/app.php';
 session_start();
 
-// Make email safe for filenames
 $userEmail = $_SESSION['user']['email'] ?? 'guest@example.com';
-$safeEmail = str_replace(['@', '.'], '_', $userEmail);
-$userFile = "users_data/" . $safeEmail . ".json";
+$userFile = app_current_user_file() ?? app_path(app_public_user_file($userEmail));
 $step = $_GET['step'] ?? 'start';
 $message = "";
 
@@ -25,15 +24,23 @@ if (file_exists($quizPath)) {
 }
 
 // Initialize user file
-if (!file_exists($userFile)) {
-    file_put_contents($userFile, json_encode([]));
+if (!is_file($userFile)) {
+    app_write_json($userFile, []);
 }
-$userData = json_decode(file_get_contents($userFile), true);
+$userData = app_read_json($userFile, []);
+if (!is_array($userData)) {
+    $userData = [];
+}
 
 // Handle CV upload
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'upload') {
     $cv = $_FILES['cv'] ?? null;
-    if ($cv && $cv['tmp_name']) {
+    if ($cv && ($cv['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK && is_uploaded_file($cv['tmp_name'])) {
+        $allowedTypes = ['text/plain', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        $mimeType = mime_content_type($cv['tmp_name']) ?: '';
+        if (!in_array($mimeType, $allowedTypes, true) || ($cv['size'] ?? 0) > 2 * 1024 * 1024) {
+            $message = "Upload a TXT, PDF, DOC, or DOCX file up to 2MB.";
+        } else {
         $cvText = strtolower(file_get_contents($cv['tmp_name']));
         $profile = [
             'Computer Science' => (strpos($cvText, 'python') !== false || strpos($cvText, 'developer') !== false) ? 50 : 0,
@@ -42,9 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'upload') {
         ];
         $userData['cv_score'] = $profile;
         $userData['cv_uploaded'] = true;
-        file_put_contents($userFile, json_encode($userData));
+        app_write_json($userFile, $userData);
         header("Location: quizPage.php?step=quiz");
         exit;
+        }
     } else {
         $message = "Upload a valid CV file.";
     }
@@ -69,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 'quiz') {
     }
 
     $userData['quiz_score'] = $score;
-    file_put_contents($userFile, json_encode($userData));
+    app_write_json($userFile, $userData);
     header("Location: result.php");
     exit;
 }

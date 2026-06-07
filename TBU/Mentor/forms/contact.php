@@ -1,41 +1,38 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
+require_once __DIR__ . '/../app.php';
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+header('Content-Type: text/plain; charset=utf-8');
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo 'Invalid request method.';
+    exit;
+}
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
+$name = trim($_POST['name'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$subject = trim($_POST['subject'] ?? '');
+$message = trim($_POST['message'] ?? '');
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
+if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $subject === '' || $message === '') {
+    http_response_code(422);
+    echo 'Please fill in all fields with a valid email address.';
+    exit;
+}
 
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
+$messagesFile = app_path('data/contact_messages.json');
+$messages = app_read_json($messagesFile, []);
+if (!is_array($messages)) {
+    $messages = [];
+}
 
-  echo $contact->send();
-?>
+$messages[] = [
+    'name' => $name,
+    'email' => $email,
+    'subject' => $subject,
+    'message' => $message,
+    'created_at' => date(DATE_ATOM),
+];
+
+app_write_json($messagesFile, $messages);
+echo 'OK';

@@ -1887,3 +1887,138 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/*--------------------------------------------------------------
+# UniMatch Portfolio Polish
+--------------------------------------------------------------*/
+:root {
+  --accent-color: #7f2f42;
+  --heading-color: #26332d;
+  --default-color: #3f4743;
+  --nav-hover-color: #7f2f42;
+  --nav-dropdown-hover-color: #7f2f42;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+.header {
+  backdrop-filter: saturate(180%) blur(14px);
+  background-color: color-mix(in srgb, var(--background-color), transparent 8%);
+}
+
+.header .logo h1,
+.footer .footer-about .logo span,
+.sitename {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.hero {
+  min-height: 78vh;
+}
+
+.hero:before {
+  background: linear-gradient(90deg, rgba(17, 24, 39, 0.78), rgba(17, 24, 39, 0.38));
+}
+
+.hero h2 {
+  max-width: 780px;
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  line-height: 1.02;
+}
+
+.hero p {
+  max-width: 640px;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.btn-getstarted,
+.btn-get-started,
+.btnn,
+.read-more,
+.more-btn,
+.btn-buy,
+.btn-custom,
+.meeting-btn {
+  border-radius: 6px !important;
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--accent-color), transparent 82%);
+}
+
+.course-item,
+.trainers-index .member,
+.why-us .icon-box,
+.pricing .pricing-item,
+.events .card-body,
+.auth-card {
+  border-radius: 8px;
+  box-shadow: 0 14px 40px rgba(38, 51, 45, 0.08);
+}
+
+.course-item,
+.trainers-index .member,
+.pricing .pricing-item {
+  height: 100%;
+  overflow: hidden;
+}
+
+.course-item img,
+.trainers-index .member img,
+.events .card-img img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  width: 100%;
+}
+
+.features .features-item {
+  min-height: 82px;
+  border-radius: 8px;
+}
+
+.footer {
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+.footer .credits {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .hero {
+    min-height: 68vh;
+  }
+
+  .section-title {
+    padding-bottom: 32px;
+  }
+
+  .vh-100 {
+    min-height: auto !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .header .logo h1 {
+    font-size: 24px;
+  }
+
+  .header .btn-getstarted {
+    margin-left: 8px;
+    padding: 7px 12px;
+  }
+
+  .footer .footer-newsletter .newsletter-form {
+    border-radius: 8px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer .footer-newsletter .newsletter-form input[type=submit] {
+    margin: 0;
+    padding: 10px 16px;
+    border-radius: 6px;
+  }
+}

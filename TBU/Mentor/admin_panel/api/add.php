@@ -1,61 +1,48 @@
 <?php
+require_once __DIR__ . '/../../app.php';
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-// Check if user is logged in as admin
-if (!isset($_SESSION["admin"])) {
-    header("Location: unauthorized.php");  // Redirect to unauthorized page if not logged in
-    exit();
+if (!isset($_SESSION['admin'])) {
+    http_response_code(403);
+    die('Unauthorized.');
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") { // Only process POST requests
-    if ($_POST["type"] === "universities") {  // Check if 'type' is 'universities'
-        $dataFile = __DIR__ . "/../../universities.json";  // Path to JSON file
-
-        // Create the file if it doesn't exist
-        if (!file_exists($dataFile)) {
-            file_put_contents($dataFile, json_encode([]));  // Initialize with empty array if file is missing
-        }
-
-        // Validate the required fields
-        $description = trim($_POST["description"] ?? "");
-        $location = trim($_POST["location"] ?? "");
-        $website = trim($_POST["website"] ?? "");
-        $image = trim($_POST["image"] ?? "");
-        $chatBot = trim($_POST["chatBot"] ?? "");
-
-        // If required fields are missing, show an error
-        if (!$description || !$location || !$website) {
-            die("❌ Missing required fields!");
-        }
-
-        // Read the existing data from JSON
-        $data = json_decode(file_get_contents($dataFile), true);
-        if (!is_array($data)) {
-            $data = [];  // Initialize an empty array if data is not in the right format
-        }
-
-        // Add the new university entry
-        $newEntry = [
-            "description" => $description,
-            "location" => $location,
-            "website" => $website,
-            "image" => $image,
-            "chatBot" => $chatBot
-        ];
-
-        $data[] = $newEntry;  // Append to the data
-
-        // Save the updated data back to the JSON file
-        file_put_contents($dataFile, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
-        // Redirect to manage universities page
-        header("Location: ../admin/manage_universities.php");
-        exit();
-    } else {
-        die("❌ Invalid type value.");
-    }
-} else {
-    die("❌ Invalid request method.");
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    die('Invalid request method.');
 }
+
+if (($_POST['type'] ?? '') !== 'universities') {
+    http_response_code(400);
+    die('Invalid type value.');
+}
+
+$name = trim($_POST['name'] ?? '');
+$description = trim($_POST['description'] ?? '');
+$location = trim($_POST['location'] ?? '');
+$website = trim($_POST['website'] ?? '');
+$image = trim($_POST['image'] ?? '');
+$chatBot = trim($_POST['chatBot'] ?? '');
+
+if ($name === '' || $description === '' || $location === '' || !filter_var($website, FILTER_VALIDATE_URL)) {
+    http_response_code(422);
+    die('Missing required fields or invalid website URL.');
+}
+
+$dataFile = app_path('universities.json');
+$data = app_read_json($dataFile, []);
+if (!is_array($data)) {
+    $data = [];
+}
+
+$data[$name] = [
+    'slug' => strtolower(trim((string) preg_replace('/[^a-z0-9]+/i', '-', $name), '-')),
+    'description' => $description,
+    'location' => $location,
+    'website' => $website,
+    'image' => $image,
+    'chatBot' => $chatBot,
+];
+
+app_write_json($dataFile, $data);
+app_redirect('../admin/manage_universities.php');

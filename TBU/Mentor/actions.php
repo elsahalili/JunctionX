@@ -1,18 +1,23 @@
 <?php
+require_once __DIR__ . '/app.php';
 session_start();
 $userEmail = $_SESSION['user']['email'] ?? null;
 if (!$userEmail) {
     echo "Not logged in.";
     exit();
 }
-$userFile = "users_data/" . str_replace("@", "_", $userEmail) . ".json";
+$userFile = app_current_user_file();
+if (!$userFile) {
+    echo "User profile not found.";
+    exit();
+}
 
 function loadUserData($file) {
     return file_exists($file) ? json_decode(file_get_contents($file), true) : [];
 }
 
 function saveUserData($file, $data) {
-    file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
+    app_write_json($file, $data);
 }
 
 $action = $_POST['action'] ?? '';

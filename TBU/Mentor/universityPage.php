@@ -1,7 +1,5 @@
 <?php
-// Enable error reporting for debugging (development only)
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+require_once __DIR__ . '/app.php';
 
 $name = $_GET['name'] ?? 'Unknown University';
 $jsonPath = 'universities.json';
@@ -37,8 +35,8 @@ if (!file_exists($imagePath)) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         body {
@@ -131,19 +129,19 @@ if (!file_exists($imagePath)) {
                     <h2 class="card-title mb-4"><?= htmlspecialchars($name) ?></h2>
 
                     <div class="info-item">
-                        <i class="fas fa-info-circle me-2"></i>
+                        <i class="bi bi-info-circle me-2"></i>
                         <strong>Description:</strong>
                         <p><?= htmlspecialchars($universityData['description'] ?? 'No description available.') ?></p>
                     </div>
 
                     <div class="info-item">
-                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <i class="bi bi-geo-alt me-2"></i>
                         <?= htmlspecialchars($universityData['location'] ?? 'Unknown location') ?>
                     </div>
 
                     <?php if (!empty($universityData['website'])): ?>
                         <div class="info-item">
-                            <i class="fas fa-globe me-2"></i>
+                            <i class="bi bi-globe2 me-2"></i>
                             <a href="<?= htmlspecialchars($universityData['website']) ?>" target="_blank">
                                 <?= htmlspecialchars($universityData['website']) ?>
                             </a>
@@ -152,14 +150,14 @@ if (!file_exists($imagePath)) {
 
                     <?php if (!empty($universityData['chatBot'])): ?>
                         <div class="info-item">
-                            <i class="fas fa-robot"></i>
+                            <i class="bi bi-chat-dots"></i>
                             <a href="<?= htmlspecialchars($universityData['chatBot']) ?>" class="btn btn-sm btn-outline-primary ms-2">Have Questions?</a>
                         </div>
                     <?php endif; ?>
 
                     <div class="d-flex justify-content-between mt-4">
-                        <a href="tour.php" class="btntour btn">
-                            <i class="fa-solid fa-globe me-2"></i> Tour
+                        <a href="<?= htmlspecialchars($universityData['website'] ?? 'result.php') ?>" target="_blank" rel="noopener" class="btntour btn">
+                            <i class="bi bi-box-arrow-up-right me-2"></i> Visit Website
                         </a>
                         <a href="result.php" class="btn btn-secondary">← Back to Results</a>
                     </div>
@@ -175,6 +173,6 @@ if (!file_exists($imagePath)) {
     </div>
 <?php endif; ?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

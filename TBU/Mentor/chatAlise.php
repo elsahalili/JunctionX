@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>UniMatch</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -137,7 +137,7 @@
   <div class="chat-wrapper">
     <div class="chat-header">
       <button id="back-button" style="background: none; border: none; font-size: 15px; color: #333; cursor: pointer;">
-        <i class="fas fa-arrow-left"></i>
+        <i class="bi bi-arrow-left"></i>
       </button>
       <h2>Alice</h2>
       <div class="status">Online</div>
@@ -146,10 +146,10 @@
     <div class="chat-body" id="chat-body"></div>
 
     <div class="chat-input">
-      <i class="fas fa-paperclip"></i>
-      <i class="fas fa-microphone"></i>
+      <i class="bi bi-paperclip"></i>
+      <i class="bi bi-mic"></i>
       <input type="text" id="message-input" placeholder="Type your message..." />
-      <button class="send" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+      <button class="send" id="send-btn"><i class="bi bi-send"></i></button>
     </div>
   </div>
 

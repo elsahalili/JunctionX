@@ -41,7 +41,7 @@
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto">
+      <a href="index.php" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">UniMatch</h1>
@@ -76,7 +76,7 @@
         <h2 data-aos="fade-up" data-aos-delay="100">Empowering Minds,<br>Building Futures</h2>
         <p data-aos="fade-up" data-aos-delay="200">Tirana Business University is where innovation meets education. Prepare for tomorrow with real-world knowledge and opportunities.</p>
         <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="courses.html" class="btn-get-started">Get Started</a>
+          <a href="courses.php" class="btn-get-started">Get Started</a>
         </div>
       </div>
 
@@ -103,7 +103,7 @@
               <li><i class="bi bi-check-circle"></i> <span>International exchange opportunities through Erasmus+ and partner universities.</span></li>
               <li><i class="bi bi-check-circle"></i> <span>Career-focused education with over 86% of students employed during or right after their studies.</span></li>
             </ul>
-            <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            <a href="about.php" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
           </div>
 
         </div>
@@ -162,13 +162,12 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="why-box">
-              <h3>Why Choose Our Products?</h3>
+              <h3>Why UniMatch Works</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+                UniMatch combines a short interest quiz, CV keyword review, and curated university data to help students discover study paths that fit their strengths and goals.
               </p>
               <div class="text-center">
-                <a href="#" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
+                <a href="register.php" class="more-btn"><span>Start Matching</span> <i class="bi bi-chevron-right"></i></a>
               </div>
             </div>
           </div><!-- End Why Box -->
@@ -179,24 +178,24 @@
               <div class="col-xl-4">
                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
                   <i class="bi bi-clipboard-data"></i>
-                  <h4>Corporis voluptates officia eiusmod</h4>
-                  <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                  <h4>Personalized Matches</h4>
+                  <p>Quiz and CV signals are translated into faculty scores and university recommendations.</p>
                 </div>
               </div><!-- End Icon Box -->
 
               <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
                   <i class="bi bi-gem"></i>
-                  <h4>Ullamco laboris ladore pan</h4>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                  <h4>Student Dashboard</h4>
+                  <p>Students can retake the quiz, review matches, and keep their journey organized.</p>
                 </div>
               </div><!-- End Icon Box -->
 
               <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
                   <i class="bi bi-inboxes"></i>
-                  <h4>Labore consequatur incidid dolore</h4>
-                  <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                  <h4>Meeting Scheduler</h4>
+                  <p>Matched students can schedule follow-up conversations directly from the results flow.</p>
                 </div>
               </div><!-- End Icon Box -->
 
@@ -219,84 +218,84 @@
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="features-item">
               <i class="bi bi-eye" style="color: #ffbb2c;"></i>
-              <h3><a href="" class="stretched-link">Lorem Ipsum</a></h3>
+              <h3><a href="courses.php" class="stretched-link">Career fit quiz</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="features-item">
               <i class="bi bi-infinity" style="color: #5578ff;"></i>
-              <h3><a href="" class="stretched-link">Dolor Sitema</a></h3>
+              <h3><a href="courses.php" class="stretched-link">CV insight</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
             <div class="features-item">
               <i class="bi bi-mortarboard" style="color: #e80368;"></i>
-              <h3><a href="" class="stretched-link">Sed perspiciatis</a></h3>
+              <h3><a href="courses.php" class="stretched-link">University matching</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
             <div class="features-item">
               <i class="bi bi-nut" style="color: #e361ff;"></i>
-              <h3><a href="" class="stretched-link">Magni Dolores</a></h3>
+              <h3><a href="courses.php" class="stretched-link">Faculty scores</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
             <div class="features-item">
               <i class="bi bi-shuffle" style="color: #47aeff;"></i>
-              <h3><a href="" class="stretched-link">Nemo Enim</a></h3>
+              <h3><a href="courses.php" class="stretched-link">Mentor access</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
             <div class="features-item">
               <i class="bi bi-star" style="color: #ffa76e;"></i>
-              <h3><a href="" class="stretched-link">Eiusmod Tempor</a></h3>
+              <h3><a href="courses.php" class="stretched-link">Event discovery</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
             <div class="features-item">
               <i class="bi bi-x-diamond" style="color: #11dbcf;"></i>
-              <h3><a href="" class="stretched-link">Midela Teren</a></h3>
+              <h3><a href="courses.php" class="stretched-link">Meeting planner</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
             <div class="features-item">
               <i class="bi bi-camera-video" style="color: #4233ff;"></i>
-              <h3><a href="" class="stretched-link">Pira Neve</a></h3>
+              <h3><a href="courses.php" class="stretched-link">Progress tracking</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="900">
             <div class="features-item">
               <i class="bi bi-command" style="color: #b2904f;"></i>
-              <h3><a href="" class="stretched-link">Dirada Pack</a></h3>
+              <h3><a href="courses.php" class="stretched-link">Admin content</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1000">
             <div class="features-item">
               <i class="bi bi-dribbble" style="color: #b20969;"></i>
-              <h3><a href="" class="stretched-link">Moton Ideal</a></h3>
+              <h3><a href="courses.php" class="stretched-link">JSON data layer</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1100">
             <div class="features-item">
               <i class="bi bi-activity" style="color: #ff5828;"></i>
-              <h3><a href="" class="stretched-link">Verdo Park</a></h3>
+              <h3><a href="courses.php" class="stretched-link">Responsive UI</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1200">
             <div class="features-item">
               <i class="bi bi-brightness-high" style="color: #29cc61;"></i>
-              <h3><a href="" class="stretched-link">Flavor Nivelanda</a></h3>
+              <h3><a href="courses.php" class="stretched-link">Portfolio ready</a></h3>
             </div>
           </div><!-- End Feature Item -->
 
@@ -328,12 +327,12 @@
                   <p class="price">$169</p>
                 </div>
 
-                <h3><a href="course-details.html">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="course-details.php">Website Design</a></h3>
+                <p class="description">Build practical skills through guided lessons, career-focused projects, and mentor support connected to real university pathways.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-1-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
+                    <a href="trainers.php" class="trainer-link">Antonio</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bi bi-person user-icon"></i>&nbsp;50
@@ -354,12 +353,12 @@
                   <p class="price">$250</p>
                 </div>
 
-                <h3><a href="course-details.html">Search Engine Optimization</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="course-details.php">Search Engine Optimization</a></h3>
+                <p class="description">Build practical skills through guided lessons, career-focused projects, and mentor support connected to real university pathways.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-2-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Lana</a>
+                    <a href="trainers.php" class="trainer-link">Lana</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bi bi-person user-icon"></i>&nbsp;35
@@ -380,12 +379,12 @@
                   <p class="price">$180</p>
                 </div>
 
-                <h3><a href="course-details.html">Copywriting</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="course-details.php">Copywriting</a></h3>
+                <p class="description">Build practical skills through guided lessons, career-focused projects, and mentor support connected to real university pathways.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="assets/img/trainers/trainer-3-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Brandon</a>
+                    <a href="trainers.php" class="trainer-link">Brandon</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bi bi-person user-icon"></i>&nbsp;20
@@ -414,16 +413,16 @@
             <div class="member">
               <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>Walter White</h4>
+                <h4>Arben Kola</h4>
                 <span>Web Development</span>
                 <p>
-                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                  Frontend mentor focused on accessible interfaces, practical projects, and student portfolio reviews.
                 </p>
                 <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
+                  <a href="https://twitter.com" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                  <a href="https://facebook.com" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="https://instagram.com" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="https://linkedin.com" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>
@@ -433,16 +432,16 @@
             <div class="member">
               <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>Sarah Jhinson</h4>
+                <h4>Elira Dervishi</h4>
                 <span>Marketing</span>
                 <p>
-                  Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+                  Business mentor helping students connect study choices with market demand and internship goals.
                 </p>
                 <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
+                  <a href="https://twitter.com" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                  <a href="https://facebook.com" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="https://instagram.com" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="https://linkedin.com" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>
@@ -452,16 +451,16 @@
             <div class="member">
               <img src="assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>William Anderson</h4>
+                <h4>Mira Hoxha</h4>
                 <span>Content</span>
                 <p>
-                  Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+                  Content and career mentor supporting application materials, interviews, and personal branding.
                 </p>
                 <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
+                  <a href="https://twitter.com" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                  <a href="https://facebook.com" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="https://instagram.com" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="https://linkedin.com" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>
@@ -480,42 +479,42 @@
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Mentor</span>
+          <a href="index.php" class="logo d-flex align-items-center">
+            <span class="sitename">UniMatch</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>Tirana Business University</p>
+            <p>Tirana, Albania</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+355 69 000 0000</span></p>
+            <p><strong>Email:</strong> <span>admissions@unimatch.test</span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="https://twitter.com" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://facebook.com" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://linkedin.com" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="about.php">About us</a></li>
+            <li><a href="courses.php">Courses</a></li>
+            <li><a href="pricing.php">Pricing</a></li>
+            <li><a href="contact.php">Contact</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <li><a href="courses.php">Study programs</a></li>
+            <li><a href="quizPage.php">Matching quiz</a></li>
+            <li><a href="result.php">University results</a></li>
+            <li><a href="events.php">Campus events</a></li>
+            <li><a href="meeting.php">Meeting scheduler</a></li>
           </ul>
         </div>
 
@@ -534,7 +533,7 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Mentor</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">UniMatch</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->

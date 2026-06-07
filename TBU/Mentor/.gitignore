@@ -1,0 +1,10 @@
+# Local runtime data created by demo forms and sessions
+data/contact_messages.json
+data/newsletter_subscribers.json
+users_data/*.json
+
+# Local server/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $allResults[] = $userData;
         file_put_contents('results.json', json_encode($allResults, JSON_PRETTY_PRINT));
 
-        header("Location: universityMatches.php");
+        header("Location: result.php");
         exit;
     }
 }

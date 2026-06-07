@@ -1,34 +1,32 @@
 <?php
+require_once __DIR__ . '/app.php';
 session_start();
 
 $error = "";
-$usersFile = "users.json";
+$usersFile = app_path('users.json');
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $email = trim($_POST["email"] ?? "");
-  $password = trim($_POST["password"] ?? "");
+  $password = $_POST["password"] ?? "";
 
   if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($password)) {
-    if (file_exists($usersFile)) {
-      $usersData = json_decode(file_get_contents($usersFile), true);
+    if (is_file($usersFile)) {
+      $usersData = app_read_json($usersFile, []);
 
-      // Ensure $usersData is an array before proceeding
-      if ($usersData === null) {
-        $usersData = []; // Initialize as empty array if decoding fails
+      if (!is_array($usersData)) {
         $error = "User data is corrupted or empty.";
       } else {
         foreach ($usersData as $user) {
-          if ($user["email"] === $email) {
-            if (password_verify($password, $user["password"])) {
+          if (($user["email"] ?? '') === $email) {
+            if (password_verify($password, $user["password"] ?? '')) {
               $_SESSION["user"] = [
                 "name" => $user["name"],
+                "surname" => $user["surname"] ?? "",
                 "email" => $user["email"],
-                "file" => "users/" . $user["email"] . ".json"  // Add file path for the user
+                "file" => $user["file"] ?? app_public_user_file($user["email"])
               ];
-              echo "<script>
-                window.location.href = 'home.php';
-              </script>";
-              exit();
+              $_SESSION["email"] = $user["email"];
+              app_redirect('home.php');
             } else {
               $error = "Incorrect password.";
             }
@@ -53,24 +51,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>UniMatch</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | UniMatch</title>
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
   <style>
   body {
-    background-color: #f5f7fa;
+    background: linear-gradient(135deg, #fff7f2 0%, #f8f9fb 52%, #eef6f3 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Segoe UI', sans-serif;
+    padding: 24px;
   }
 
-  .container {
-    max-width: 400px;
+  .auth-card {
+    width: min(100%, 430px);
     background-color: white;
     padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(55, 66, 59, 0.12);
     text-align: center;
   }
 
@@ -123,10 +124,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="auth-card">
+    <a href="index.php" class="logo d-inline-flex align-items-center justify-content-center mb-3">
+      <span class="sitename fw-bold fs-3">UniMatch</span>
+    </a>
     <h2>Login</h2>
     <?php if ($error): ?>
-      <div class="alert alert-danger"><?= $error ?></div>
+      <div class="alert alert-danger"><?= app_h($error) ?></div>
     <?php endif; ?>
     <form method="POST">
       <input type="email" name="email" class="form-control" placeholder="Email" required>

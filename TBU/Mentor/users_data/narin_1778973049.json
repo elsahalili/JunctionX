@@ -2,7 +2,17 @@
     "name": "narin",
     "surname": "narin",
     "email": "narin@gmail.com",
-    "cv_uploaded": false,
+    "cv_uploaded": true,
     "quiz_results": [],
-    "matched_faculties": []
+    "matched_faculties": [],
+    "cv_score": {
+        "Computer Science": 50,
+        "Medicine": 0,
+        "Business": 0
+    },
+    "quiz_score": {
+        "Computer Science": 0,
+        "Medicine": 50,
+        "Business": 0
+    }
 }

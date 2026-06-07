@@ -1,11 +1,16 @@
 <?php
+require_once __DIR__ . '/../../app.php';
 session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $data = json_decode(file_get_contents("../data/admins.json"), true);
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $data = app_read_json(__DIR__ . '/../data/admins.json', []);
+    $email = trim($_POST["email"] ?? '');
+    $password = $_POST["password"] ?? '';
     foreach ($data as $admin) {
-        if ($admin["email"] === $email && $admin["password"] === $password) {
+        $storedPassword = $admin["password"] ?? '';
+        $passwordMatches = str_starts_with($storedPassword, '$2y$')
+            ? password_verify($password, $storedPassword)
+            : hash_equals($storedPassword, $password);
+        if (($admin["email"] ?? '') === $email && $passwordMatches) {
             $_SESSION["admin"] = $admin["email"];
             header("Location: ../index.php");
             exit();
@@ -20,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta charset="UTF-8">
   <title>Admin Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <style>
     @keyframes fadeUpIn {
       0%   { opacity: 0; transform: translateY(30px); }
@@ -94,9 +99,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
   <div class="login-card">
-    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon">
+    <div class="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-light" style="width:80px;height:80px;">
+      <span class="fw-bold fs-3 text-secondary">U</span>
+    </div>
     <h3 class="mb-4">Admin Login</h3>
-    <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
+    <?php if (isset($error)) echo "<div class='alert alert-danger'>" . app_h($error) . "</div>"; ?>
     <form method="post">
       <div class="mb-3">
         <input type="email" name="email" class="form-control" placeholder="youremail@mail.com" required>

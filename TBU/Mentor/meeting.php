@@ -1,22 +1,44 @@
 <?php
+require_once __DIR__ . '/app.php';
 session_start();
 
 // Initialize meetings data from meetings.json
-$meetings_data = file_get_contents('meetings.json');
-$meetings = json_decode($meetings_data, true);
-if (!$meetings) {
+$meetingsFile = app_path('meetings.json');
+$meetings = app_read_json($meetingsFile, []);
+if (!is_array($meetings)) {
     $meetings = [];
 }
+$meetingsChanged = false;
+foreach ($meetings as &$meeting) {
+    if (empty($meeting['id'])) {
+        $meeting['id'] = bin2hex(random_bytes(8));
+        $meetingsChanged = true;
+    }
+}
+unset($meeting);
+if ($meetingsChanged) {
+    app_write_json($meetingsFile, $meetings);
+}
+$successMessage = '';
+$errorMessage = '';
 
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $student_name = $_POST['student_name'];
-    $university_name = $_POST['university_name'];
-    $meeting_title = $_POST['meeting_title'];
-    $meeting_date = $_POST['meeting_date'];
-    $meeting_time = $_POST['meeting_time'];
+    $student_name = trim($_POST['student_name'] ?? '');
+    $university_name = trim($_POST['university_name'] ?? '');
+    $meeting_title = trim($_POST['meeting_title'] ?? '');
+    $meeting_date = trim($_POST['meeting_date'] ?? '');
+    $meeting_time = trim($_POST['meeting_time'] ?? '');
+
+    $dateIsValid = (bool) preg_match('/^\d{4}-\d{2}-\d{2}$/', $meeting_date);
+    $timeIsValid = (bool) preg_match('/^\d{2}:\d{2}$/', $meeting_time);
+
+    if ($student_name === '' || $university_name === '' || $meeting_title === '' || !$dateIsValid || !$timeIsValid) {
+        $errorMessage = 'Please complete every field with a valid date and time.';
+    } else {
 
     $new_meeting = [
+        'id' => bin2hex(random_bytes(8)),
         'student_name' => $student_name,
         'university_name' => $university_name,
         'meeting_title' => $meeting_title,
@@ -27,8 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $meetings[] = $new_meeting;
 
-    file_put_contents('meetings.json', json_encode($meetings, JSON_PRETTY_PRINT));
-    echo "<div class='alert alert-success text-center'>Meeting scheduled successfully!</div>";
+    app_write_json($meetingsFile, $meetings);
+    $successMessage = 'Meeting scheduled successfully!';
+    }
 }
 ?>
 
@@ -40,14 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>UniMatch</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <!-- FullCalendar CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
 
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -152,14 +175,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+<?php if ($successMessage): ?>
+    <div class="alert alert-success text-center mb-0"><?= app_h($successMessage) ?></div>
+<?php endif; ?>
+<?php if ($errorMessage): ?>
+    <div class="alert alert-danger text-center mb-0"><?= app_h($errorMessage) ?></div>
+<?php endif; ?>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="#"><i class="fas fa-calendar-check"></i> Student-Meeting App</a>
+        <a class="navbar-brand" href="#"><i class="bi bi-calendar-check"></i> Student-Meeting App</a>
         <div class="ms-auto">
             <a href="result.php" class="btn btn-outline-light rounded-pill px-4 fw-bold shadow-sm back-btn">
-                <i class="fas fa-arrow-left me-2"></i>Back to Results
+                <i class="bi bi-arrow-left me-2"></i>Back to Results
             </a>
         </div>
     </div>
@@ -168,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Main Content -->
 <div class="container mt-5">
-    <h2 class="text-center mb-5"><i class="fa-solid fa-calendar-days"></i> Schedule a Meeting</h2>
+    <h2 class="text-center mb-5"><i class="bi bi-calendar-event"></i> Schedule a Meeting</h2>
 
     <div class="row justify-content-center">
         <!-- Schedule Form -->
@@ -238,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -247,6 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         var events = meetingsData.map(function (meeting) {
             return {
+                id: meeting.id,
                 title: meeting.meeting_title,
                 start: meeting.meeting_date + 'T' + meeting.meeting_time,
                 description: meeting.university_name + ' - ' + meeting.student_name
@@ -261,15 +291,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 document.getElementById('modalDate').innerText = info.event.start.toLocaleString();
                 document.getElementById('modalDescription').innerText = info.event.extendedProps.description;
 
-                const eventKey = info.event.start.toISOString() + '_' + info.event.title;
-
                 document.getElementById('deleteMeetingBtn').onclick = function () {
                     fetch('delete_meeting.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ key: eventKey })
+                        body: JSON.stringify({ id: info.event.id })
                     })
                     .then(res => res.text())
                     .then(response => {

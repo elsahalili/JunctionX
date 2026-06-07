@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../app.php';
 session_start();
 if (!isset($_SESSION["admin"])) {
     header("Location: login.php");
@@ -6,27 +7,17 @@ if (!isset($_SESSION["admin"])) {
 }
 
 // Load universities data
-$universitiesFile = "../../universities.json";
-$data = json_decode(file_get_contents($universitiesFile), true) ?? [];
+$universitiesFile = app_path('universities.json');
+$data = app_read_json($universitiesFile, []);
 
-// Check if description is provided in the URL
-if (!isset($_GET['description'])) {
+// Check if name is provided in the URL
+if (!isset($_GET['name'])) {
     echo "University not found!";
     exit();
 }
 
-$description = $_GET['description'];
-$uniFound = false;
-$uniIndex = -1;
-
-// Search for the university by description
-foreach ($data as $index => $university) {
-    if ($university['description'] === $description) {
-        $uniFound = true;
-        $uniIndex = $index;
-        break;
-    }
-}
+$uniName = $_GET['name'];
+$uniFound = isset($data[$uniName]) && is_array($data[$uniName]);
 
 // If university is not found, show an error message
 if (!$uniFound) {
@@ -36,13 +27,13 @@ if (!$uniFound) {
 
 // If form is submitted, update the university data
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $data[$uniIndex]['description'] = $_POST['description'];
-    $data[$uniIndex]['location']    = $_POST['location'];
-    $data[$uniIndex]['website']     = $_POST['website'];
-    $data[$uniIndex]['image']       = $_POST['image'];
-    $data[$uniIndex]['chatBot']     = $_POST['chatBot'];
+    $data[$uniName]['description'] = trim($_POST['description'] ?? '');
+    $data[$uniName]['location']    = trim($_POST['location'] ?? '');
+    $data[$uniName]['website']     = trim($_POST['website'] ?? '');
+    $data[$uniName]['image']       = trim($_POST['image'] ?? '');
+    $data[$uniName]['chatBot']     = trim($_POST['chatBot'] ?? '');
 
-    file_put_contents($universitiesFile, json_encode($data, JSON_PRETTY_PRINT));
+    app_write_json($universitiesFile, $data);
     header("Location: manage_universities.php");
     exit();
 }
@@ -53,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta charset="UTF-8">
   <title>Edit University</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <style>
     /* Fade‑Up & Fade‑In Animations */
     @keyframes fadeUpIn {
@@ -139,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h2 class="text-center mb-4">Edit University</h2>
 
     <div class="btn-back text-center">
-      <a href="manage_universities.php">← Back to Universities</a>
+      <a href="manage_universities.php">&larr; Back to Universities</a>
     </div>
 
     <div class="card-edit">
@@ -151,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             id="description"
             name="description"
             class="form-control"
-            value="<?= htmlspecialchars($data[$uniIndex]['description']) ?>"
+            value="<?= htmlspecialchars($data[$uniName]['description']) ?>"
             required>
         </div>
 
@@ -162,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             id="location"
             name="location"
             class="form-control"
-            value="<?= htmlspecialchars($data[$uniIndex]['location']) ?>"
+            value="<?= htmlspecialchars($data[$uniName]['location']) ?>"
             required>
         </div>
 
@@ -173,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             id="website"
             name="website"
             class="form-control"
-            value="<?= htmlspecialchars($data[$uniIndex]['website']) ?>"
+            value="<?= htmlspecialchars($data[$uniName]['website']) ?>"
             required>
         </div>
 
@@ -184,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             id="image"
             name="image"
             class="form-control"
-            value="<?= htmlspecialchars($data[$uniIndex]['image']) ?>"
+            value="<?= htmlspecialchars($data[$uniName]['image']) ?>"
             required>
           <div class="form-text">Ensure the image is in <code>/admin_panel/images/</code></div>
         </div>
@@ -196,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             id="chatBot"
             name="chatBot"
             class="form-control"
-            value="<?= htmlspecialchars($data[$uniIndex]['chatBot']) ?>"
+            value="<?= htmlspecialchars($data[$uniName]['chatBot']) ?>"
             required>
         </div>
 

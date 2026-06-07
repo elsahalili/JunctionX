@@ -1,25 +1,31 @@
 <?php
+require_once __DIR__ . '/app.php';
+session_start();
+
 $error = "";
 $success = "";
 
-$usersFile = 'users.json';
-$usersDataDir = 'users_data';
+$usersFile = app_path('users.json');
+$usersDataDir = app_path('users_data');
 
 if (!is_dir($usersDataDir)) {
-  mkdir($usersDataDir);
+  mkdir($usersDataDir, 0755, true);
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $name = trim($_POST["name"] ?? "");
   $surname = trim($_POST["surname"] ?? "");
   $email = trim($_POST["email"] ?? "");
-  $password = trim($_POST["password"] ?? "");
+  $password = $_POST["password"] ?? "";
 
-  if ($name && $surname && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($password)) {
-    $users = file_exists($usersFile) ? json_decode(file_get_contents($usersFile), true) : [];
+  if ($name && $surname && filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($password) >= 8) {
+    $users = app_read_json($usersFile, []);
+    if (!is_array($users)) {
+      $users = [];
+    }
 
     foreach ($users as $user) {
-      if ($user['email'] === $email) {
+      if (strcasecmp($user['email'] ?? '', $email) === 0) {
         $error = "Email already taken.";
         break;
       }
@@ -27,14 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$error) {
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-      $filename = $usersDataDir . '/' . strtolower($name) . '_' . time() . '.json';
+      $publicFile = app_public_user_file($email);
+      $filename = app_path($publicFile);
     
       $users[] = [
         'name' => $name,
         'surname' => $surname,
         'email' => $email,
         'password' => $hashedPassword,
-        'file' => $filename
+        'file' => $publicFile
       ];
     
       $personalData = [
@@ -46,19 +53,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'matched_faculties' => []
       ];
     
-      file_put_contents($usersFile, json_encode($users, JSON_PRETTY_PRINT));
-      file_put_contents($filename, json_encode($personalData, JSON_PRETTY_PRINT));
-    
-      echo "<script>
-        alert('Welcome, " . htmlspecialchars($name) . " " . htmlspecialchars($surname) . "!');
-        window.location.href = 'home.php';
-      </script>";
-      exit();
+      app_write_json($usersFile, $users);
+      app_write_json($filename, $personalData);
+
+      $_SESSION['user'] = [
+        'name' => $name,
+        'surname' => $surname,
+        'email' => $email,
+        'file' => $publicFile
+      ];
+      $_SESSION['email'] = $email;
+      app_redirect('home.php');
     }
     
     }
   } else {
-    $error = "Please fill in all fields correctly.";
+    $error = "Please fill in all fields correctly. Password must be at least 8 characters.";
   }
 
 ?>
@@ -67,24 +77,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>UniMatch</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | UniMatch</title>
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
   <style>
   body {
-    background-color: #f9f9f9;
+    background: linear-gradient(135deg, #fff7f2 0%, #f8f9fb 52%, #eef6f3 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Segoe UI', sans-serif;
   }
 
-  .container {
-    max-width: 400px;
+  .auth-card {
+    width: min(100%, 430px);
     background: white;
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(55, 66, 59, 0.12);
   }
 
   .form-control {
@@ -136,10 +148,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="auth-card">
+    <a href="index.php" class="logo d-flex align-items-center justify-content-center mb-3">
+      <span class="sitename fw-bold fs-3">UniMatch</span>
+    </a>
     <h2 class="text-center mb-4">Sign Up</h2>
     <?php if (!empty($error)): ?>
-      <div class="alert alert-danger"><?= $error ?></div>
+      <div class="alert alert-danger"><?= app_h($error) ?></div>
     <?php endif; ?>
     <form method="POST">
       <input type="text" name="name" class="form-control" placeholder="Name" required>
